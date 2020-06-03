@@ -7,6 +7,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import BookmarkCardTag from "../BookmarkCardTag";
+import BookmarkPopup from "../BookmarkPopup";
 import "./BookmarkCard.scss";
 
 
@@ -71,6 +72,7 @@ export default function BookmarkCard() {
               <CommentIcon />
             </IconButton>
           </box>
+          <BookmarkPopup className={classes.info}></BookmarkPopup>
       </CardActions>
     </Card>
   );
