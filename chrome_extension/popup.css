@@ -26,6 +26,12 @@ input {
     padding: 6px 0px;
 }
 
+.fixed-height {
+    padding: 1px;
+    max-height: 200px;
+    overflow: auto;
+}
+
 .star-ratings img {
     width: 20px;
     height: 20px;
