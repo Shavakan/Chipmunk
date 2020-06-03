@@ -4,26 +4,33 @@
 <head>
     <!--js-->
     <script src="popup.js"></script>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
 
     <!--css-->
     <link href="popup.css" rel="stylesheet" />
 </head>
 
 <body>
-    <button type="button">Go to Chipmunk</button>
-    <div>Title</div>
-    <div><input type="text" id="title" name="title"></div>
-    <div>Tags</div>
-    <div><input type="text" id="tags" name="tags"></div>
-    <div>Your Rating(Optional):</div>
+    <button id="go_to_chipmunk" type="button">Go to Chipmunk</button>
+    <div class="div-menu">Title</div>
     <div>
-        <img src="resources/star.png" style="width:20px;height:20px;">
-        <img src="resources/star.png" style="width:20px;height:20px;">
-        <img src="resources/star.png" style="width:20px;height:20px;">
-        <img src="resources/star.png" style="width:20px;height:20px;">
-        <img src="resources/star.png" style="width:20px;height:20px;">
+        <input id="title" type="text" id="title" name="title">
     </div>
-    <button type="button">Add</button>
+    <div class="div-menu">Channel</div>
+    <div class="channel">Awesome Channel</div>
+    <div class="div-menu">Tags</div>
+    <div class="ui-widget">
+        <input type="text" id="tags" name="tags">
+    </div>
+    <div class="div-menu">Your Rating(Optional):</div>
+    <div id="star_ratings" class="star-ratings">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+    </div>
+    <button id="add_bookmark" type="button">Add</button>
 </body>
 
 </html>
