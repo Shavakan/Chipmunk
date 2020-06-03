@@ -34,6 +34,13 @@ function GetNavList(config) {
     component: Link,
     to: "/about/"
   });
+
+  NavList.push({
+    primaryText: "SampleVX",
+    leftIcon: <FontIcon>person</FontIcon>,
+    component: Link,
+    to: "/samplevx/"
+  });
   return NavList;
 }
 export default GetNavList;

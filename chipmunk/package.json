@@ -4,6 +4,11 @@
   "version": "2.0.0",
   "author": "Ruben Harutyunyan <vagr9k@gmail.com>",
   "dependencies": {
+    "@vx/vx": "0.0.196",
+    "@vx/group": "0.0.196",
+    "@vx/mock-data": "0.0.196",
+    "@vx/scale": "0.0.196",
+    "@vx/shape": "0.0.196",
     "font-awesome": "^4.7.0",
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
