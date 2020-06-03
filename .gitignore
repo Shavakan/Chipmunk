@@ -250,3 +250,5 @@ dist
 
 # OS X
 .DS_Store
+
+*.icloud
