@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
     "name": "chipmunk_chrome_extension",
-    "description": "Print Hello, World! message",
+    "description": "Chipmunk Chrome Extension",
     "version": "1.0.0",
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": "resources/icon.png",
         "default_popup": "popup.html"
     },
     "permissions": [
