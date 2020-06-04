@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import "./TopMenu.scss";
+import ChannelSideBar from "../ChannelSideBar";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     minHeight: 128,
-    background: "#7191A3",
+    backgroundColor: "#7191A3",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
   },
@@ -32,7 +33,8 @@ export default function TopMenu() {
         <Typography variant="h3" className={classes.title}>
           My Cheek Pouch 
         </Typography>
+        <ChannelSideBar></ChannelSideBar>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
