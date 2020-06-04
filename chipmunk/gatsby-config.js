@@ -129,6 +129,7 @@ module.exports = {
       }
     },
     "gatsby-plugin-offline",
+    "gatsby-plugin-typescript",
     {
       resolve: "gatsby-plugin-feed",
       options: {

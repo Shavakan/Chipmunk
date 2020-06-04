@@ -1,11 +1,11 @@
 import "./SampleVX.scss";
-
-import React from 'react';
+import React, { Component } from 'react';
 import { Group } from '@vx/group';
 import { Tree } from '@vx/hierarchy';
 import { LinkHorizontal } from '@vx/shape';
 import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
+// import { Node, RootNode, ParentNode } from './node';
 
 const peach = '#fd9b93';
 const pink = '#fe6e9e';
@@ -18,43 +18,50 @@ const bg = '#272b4d';
 
 const tree = {
   "name": "T",
-  "children": [{ 
-    "name": "A",
-    "children": [
-      { "name": "A1" },
-      { "name": "A2" },
-      { "name": "A3" },
-      { "name": "C",
-        "children": [{
-          "name": "C1",
-        }, {
-          "name": "D",
-          "children": [{
-            "name": "D1"
-          },{
-            "name": "D2"
-          },{
-            "name": "D3"
-          }]
-        }]
-      },
-    ]},
-    { "name": "Z" },
-    {
-    "name": "B",
-    "children": [
-      { "name": "B1"},
-      { "name": "B2"},
-      { "name": "B3"},
-    ]},
-  ],
+  "children": [{
+    "name": "A"
+  }]
 };
+
+// const tree = {
+//   "name": "T",
+//   "children": [{ 
+//     "name": "A",
+//     "children": [
+//       { "name": "A1" },
+//       { "name": "A2" },
+//       { "name": "A3" },
+//       { "name": "C",
+//         "children": [{
+//           "name": "C1",
+//         }, {
+//           "name": "D",
+//           "children": [{
+//             "name": "D1"
+//           },{
+//             "name": "D2"
+//           },{
+//             "name": "D3"
+//           }]
+//         }]
+//       },
+//     ]},
+//     { "name": "Z" },
+//     {
+//     "name": "B",
+//     "children": [
+//       { "name": "B1"},
+//       { "name": "B2"},
+//       { "name": "B3"},
+//     ]},
+//   ],
+// };
 
 function Node({ node }) {
   const width = 40;
   const height = 20;
-  const centerX = -width / 2;
-  const centerY = -height / 2;
+  const centerX = (-width / 2) + 50;
+  const centerY = (-height / 2) + 50;
   const isRoot = node.depth === 0;
   const isParent = !!node.children;
 
@@ -113,8 +120,8 @@ function RootNode({ node }) {
 function ParentNode({ node }) {
   const width = 40;
   const height = 20;
-  const centerX = -width / 2;
-  const centerY = -height / 2;
+  const centerX = (-width / 2) + 50;
+  const centerY = (-height / 2) + 50;
 
   return (
     <Group top={node.x} left={node.y}>
