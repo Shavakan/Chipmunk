@@ -10,9 +10,14 @@ var tags_array = new Array();
 
 function onLoad() {
     init_firebase();
-    set_event();
-    set_default_value();
-    set_tags();
+    init_go_to_chipmunk();
+    init_title();
+    init_star_ratings();
+    init_add_bookmark();
+
+    refresh_channels();
+    refresh_tags();
+    set_star_ratings(3);
 }
 
 window.onload = onLoad;
@@ -32,67 +37,51 @@ function init_firebase() {
     firebase.initializeApp(firebaseConfig);
 }
 
-function set_event() {
+function init_go_to_chipmunk() {
     $(go_to_chipmunk_button_id).click(function () {
-        go_to_chipmunk();
+        // todo: go to chipmunk page
+        var newURL = 'https://www.google.com';
+        chrome.tabs.create({ url: newURL });
     });
-    $(add_bookmark_button_id).click(function () {
-        add_bookmark();
-    });
+}
 
+function init_title(title_string) {
+    chrome.tabs.getSelected(null, function (tab) {
+        page_url = tab.url;
+
+        $(title_input_id).val(tab.title);
+        $(title_input_id).select();
+    });
+}
+
+function init_star_ratings() {
     var stars = $(star_ratings_id).children();
     for (var i = 0; i < stars.length; i++) {
         var star = stars.eq(i);
-        set_star_ratings_button_event(star, i + 1);
+        init_star_ratings_button(star, i + 1);
     }
 }
 
-function go_to_chipmunk() {
-    var newURL = 'https://www.google.com';
-    chrome.tabs.create({ url: newURL });
-}
-
-function add_bookmark() {
-    console.log($(title_input_id).val());
-    console.log(star_ratings);
-}
-
-function set_star_ratings_button_event(star, ratings) {
+function init_star_ratings_button(star, ratings) {
     $(star).click(function (e) {
         set_star_ratings(ratings);
     });
 }
-function set_default_value() {
-    chrome.tabs.getSelected(null, function (tab) {
-        page_url = tab.url;
 
-        set_title(tab.title);
-        set_star_ratings(3);
+function init_add_bookmark() {
+    $(add_bookmark_button_id).click(function () {
+        // todo: add bookmark request
+        console.log($(title_input_id).val());
+        console.log(star_ratings);
     });
 }
 
-function set_title(title_string) {
-    $(title_input_id).val(title_string);
-    $(title_input_id).select();
+function refresh_channels() {
+    // todo: load channels list
+    // todo: update channels dropdown
 }
 
-function set_star_ratings(ratings) {
-    star_ratings = ratings;
-
-    var stars = $(star_ratings_id).children();
-    for (var i = 0; i < star_ratings; i++) {
-        var star = stars.eq(i);
-        star.removeClass();
-        star.addClass('star-fill-img');
-    }
-    for (var i = star_ratings; i < stars.length; i++) {
-        var star = stars.eq(i);
-        star.removeClass();
-        star.addClass('star-unfill-img');
-    }
-}
-
-function set_tags() {
+function refresh_tags() {
     // todo: set session id
     // todo: set channel
     var database = firebase.database();
@@ -102,11 +91,11 @@ function set_tags() {
             tags_array.push(tags[i]);
         }
 
-        set_tags_dropdown_event();
+        refresh_tags_dropdown_event();
     });
 }
 
-function set_tags_dropdown_event() {
+function refresh_tags_dropdown_event() {
     // todo: add new typed tag
 
     $(tags_id).autocomplete({
@@ -119,8 +108,25 @@ function set_tags_dropdown_event() {
         minLength: 0
     });
     $(tags_id).autocomplete('widget').addClass('fixed-height');
-    $(tags_id).autocomplete('search', '');
     $(tags_id).focus(function () {
         $(tags_id).autocomplete('search', '');
     });
+}
+
+function set_star_ratings(ratings) {
+    star_ratings = ratings;
+
+    var stars = $(star_ratings_id).children();
+    for (var i = 0; i < star_ratings; i++) {
+        var star = stars.eq(i);
+        star.removeClass('star-unfill-img');
+        star.removeClass('star-fill-img');
+        star.addClass('star-fill-img');
+    }
+    for (var i = star_ratings; i < stars.length; i++) {
+        var star = stars.eq(i);
+        star.removeClass('star-unfill-img');
+        star.removeClass('star-fill-img');
+        star.addClass('star-unfill-img');
+    }
 }
