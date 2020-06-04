@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
 
-export const drawerWidth = 240;
+export const drawerWidth = 160;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -18,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
         whiteSpace: 'nowrap',
       },
       paper: {
-        marginTop: 128,
+        marginTop: 96,
         width: drawerWidth,
         borderRight: 0,
         backgroundColor: "#A4BBC8",
       },
       toolbar: {
+        minHeight: 64,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
@@ -47,8 +48,11 @@ export default function ChannelSideBar() {
             paper: classes.paper
         }}
     >
+        <div className={classes.toolbar}>
+        </div>
         <Divider />
         <List>
+        {/* TODO: Make Docker look like selected */}
         {['Docker', 'AWS', 'VueJS', 'AngularJS'].map((text, index) => (
             <ListItem button key={text}>
             <ListItemText primary={text} />

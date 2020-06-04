@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChannelSideBar from "../ChannelSideBar";
+import BookmarkMenuBar from "../BookmarkMenuBar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   toolbar: {
-    minHeight: 128,
+    minHeight: 96,
     backgroundColor: "#7191A3",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
@@ -35,6 +36,8 @@ export default function TopMenu() {
         </Typography>
         <ChannelSideBar></ChannelSideBar>
       </Toolbar>
+      <BookmarkMenuBar></BookmarkMenuBar>
+      {/* TODO: Graph Section here */}
     </AppBar>
   );
 }
