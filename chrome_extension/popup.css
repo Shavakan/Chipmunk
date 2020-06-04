@@ -20,10 +20,18 @@ input {
     margin-bottom: 3px;
 }
 
-.channel {
+
+select {
     width: 100%;
-    background-color: beige;
-    padding: 6px 0px;
+    height: 11%;
+    padding: 3px 3px;
+    border: 1px solid #999;
+    font-family: inherit;
+    background: url('resources/arrow.png') no-repeat 95% 50%;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .fixed-height {

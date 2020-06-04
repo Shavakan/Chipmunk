@@ -4,9 +4,15 @@ const title_input_id = '#title';
 const tags_id = '#tags';
 const star_ratings_id = '#star_ratings';
 
+// firebase variable
+var session_id = 'dc4b3b02-a31a-11ea-bb37-0242ac1300';
+var channels_array = [];
+var tags_array = [];
+
+// user typed variable
 var page_url = '';
+var channel = 'channels';
 var star_ratings = 0;
-var tags_array = new Array();
 
 function onLoad() {
     init_firebase();
@@ -16,7 +22,6 @@ function onLoad() {
     init_add_bookmark();
 
     refresh_channels();
-    refresh_tags();
     set_star_ratings(3);
 }
 
@@ -77,40 +82,38 @@ function init_add_bookmark() {
 }
 
 function refresh_channels() {
-    // todo: load channels list
-    // todo: update channels dropdown
+    var url = '/' + session_id;
+    var query = firebase.database().ref(url).orderByKey();
+    query.once('value')
+        .then(function (snapshot) {
+            channels_array = [];
+
+            snapshot.forEach(function (childSnapshot) {
+                var key = childSnapshot.key;
+                channels_array.push(key);
+            });
+
+            refresh_channels_dropdown();
+            refresh_tags();
+        });
 }
 
-function refresh_tags() {
-    // todo: set session id
-    // todo: set channel
-    var database = firebase.database();
-    database.ref('/dc4b3b02-a31a-11ea-bb37-0242ac1300/channels/tags').once('value').then(function (snapshot) {
-        var tags = snapshot.val();
-        for (var i = 0; i < tags.length; i++) {
-            tags_array.push(tags[i]);
-        }
+function refresh_channels_dropdown() {
+    set_channel(channels_array[0]);
 
-        refresh_tags_dropdown_event();
-    });
+    var select = document.getElementById('select_channel');
+    for (var i = 0; i < channels_array.length; i++) {
+        var chan = channels_array[i];
+        var el = document.createElement('option');
+        el.textContent = chan;
+        el.value = chan;
+        select.appendChild(el);
+    }
 }
 
-function refresh_tags_dropdown_event() {
-    // todo: add new typed tag
-
-    $(tags_id).autocomplete({
-        source: tags_array,
-        select: function (event, ui) {
-            var value = ui.item['value'];
-            // todo: add cliked tag
-            return false;
-        },
-        minLength: 0
-    });
-    $(tags_id).autocomplete('widget').addClass('fixed-height');
-    $(tags_id).focus(function () {
-        $(tags_id).autocomplete('search', '');
-    });
+function set_channel(chan) {
+    channel = chan;
+    refresh_tags();
 }
 
 function set_star_ratings(ratings) {
@@ -129,4 +132,38 @@ function set_star_ratings(ratings) {
         star.removeClass('star-fill-img');
         star.addClass('star-unfill-img');
     }
+}
+
+function refresh_tags() {
+    var url = '/' + session_id + '/' + channel + '/tags';
+    var query = firebase.database().ref(url).orderByKey();
+    query.once('value')
+        .then(function (snapshot) {
+            tags_array = [];
+
+            var tags = snapshot.val();
+            for (var i = 0; i < tags.length; i++) {
+                tags_array.push(tags[i]);
+            }
+
+            refresh_tags_dropdown_event();
+        });
+}
+
+function refresh_tags_dropdown_event() {
+    // todo: add new typed tag
+
+    $(tags_id).autocomplete({
+        source: tags_array,
+        select: function (event, ui) {
+            var value = ui.item['value'];
+            // todo: add cliked tag
+            return false;
+        },
+        minLength: 0
+    });
+    $(tags_id).autocomplete('widget').addClass('fixed-height');
+    $(tags_id).focus(function () {
+        $(tags_id).autocomplete('search', '');
+    });
 }
