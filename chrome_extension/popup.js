@@ -44,10 +44,14 @@ function init_firebase() {
 
 function init_go_to_chipmunk() {
     $(go_to_chipmunk_button_id).click(function () {
-        // todo: go to chipmunk page
-        var newURL = 'https://www.google.com';
-        chrome.tabs.create({ url: newURL });
+        go_to_chipmunk_page();
     });
+}
+
+function go_to_chipmunk_page() {
+    // todo: go to chipmunk page with session id
+    var newURL = 'https://www.google.com';
+    chrome.tabs.create({ url: newURL });
 }
 
 function init_title(title_string) {
@@ -75,9 +79,7 @@ function init_star_ratings_button(star, ratings) {
 
 function init_add_bookmark() {
     $(add_bookmark_button_id).click(function () {
-        // todo: add bookmark request
-        console.log($(title_input_id).val());
-        console.log(star_ratings);
+        add_bookmark_request();
     });
 }
 
@@ -179,6 +181,34 @@ function add_tag_request(tag) {
         } else {
             // todo: update tag dropdownmenu
             // todo: add new tag in input field
+        }
+    });
+}
+
+function add_bookmark_request() {
+    // todo: check valid title, tags
+
+    var url = '/' + session_id + '/' + channel + '/bookmarks';
+    var newKey = firebase.database().ref(url).push().key;
+
+    var updates = {};
+    var title = $(title_input_id).val();
+    // todo: get selected tags
+    var bookmarkData = {
+        rating: star_ratings,
+        tags: ["Docker", "Bash"],
+        title: title,
+        url: page_url,
+        uuid: newKey,
+    };
+    updates[newKey] = bookmarkData;
+
+    var query = firebase.database().ref(url);
+    query.update(updates, function (error) {
+        if (error) {
+            alert('error!!!');
+        } else {
+            go_to_chipmunk_page();
         }
     });
 }
