@@ -208,6 +208,29 @@ function add_bookmark_request() {
         if (error) {
             alert('error!!!');
         } else {
+            add_connection_request(newKey);
+        }
+    });
+}
+
+function add_connection_request(child_uuid) {
+    var url = '/' + session_id + '/' + channel + '/connections';
+    var newKey = firebase.database().ref(url).push().key;
+
+    var updates = {};
+    // todo: get parent bookmark uuid
+    var connectionData = {
+        child_uuid: child_uuid,
+        parent_uuid: "good-parent-uuid",
+        type: ":thumbs-up:",
+    };
+    updates[newKey] = connectionData;
+
+    var query = firebase.database().ref(url);
+    query.update(updates, function (error) {
+        if (error) {
+            alert('error!!!');
+        } else {
             go_to_chipmunk_page();
         }
     });
