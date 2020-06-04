@@ -167,3 +167,18 @@ function refresh_tags_dropdown_event() {
         $(tags_id).autocomplete('search', '');
     });
 }
+
+function add_tag_request(tag) {
+    tags_array.push(tag);
+
+    var url = '/' + session_id + '/' + channel + '/tags';
+    var query = firebase.database().ref(url);
+    query.set(tags_array, function (error) {
+        if (error) {
+            alert('error!!!');
+        } else {
+            // todo: update tag dropdownmenu
+            // todo: add new tag in input field
+        }
+    });
+}
