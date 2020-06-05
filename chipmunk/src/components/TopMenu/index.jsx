@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChannelSideBar from "../ChannelSideBar";
 import BookmarkMenuBar from "../BookmarkMenuBar";
-import SampleVX from "../SampleVX";
+import BookmarkGraph from "../BookmarkGraph";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ export default function TopMenu() {
         <ChannelSideBar></ChannelSideBar>
       </Toolbar>
       <BookmarkMenuBar></BookmarkMenuBar>
-      <SampleVX width={600} height={600*0.6}></SampleVX>
+      <BookmarkGraph width={600} height={600*0.6}></BookmarkGraph>
     </AppBar>
   );
 }

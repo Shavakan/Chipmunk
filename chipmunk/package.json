@@ -43,6 +43,7 @@
     "netlify-cms-app": "^2.12.3",
     "node-sass": "^4.14.1",
     "prismjs": "^1.19.0",
+    "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-disqus-comments": "^1.4.0",
     "react-dom": "^16.13.1",
@@ -50,6 +51,9 @@
     "react-md": "^1.16.1",
     "react-share": "^4.1.0",
     "react-twitter-widgets": "^1.7.1",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-pender": "^2.0.12",
     "url-join": "^4.0.1"
   },
   "devDependencies": {
