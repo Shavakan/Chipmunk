@@ -154,19 +154,23 @@ function refresh_tags() {
 
 function refresh_tags_dropdown_event() {
     // todo: add new typed tag
+    // todo: get default selected tags array
+    var selected_tags_array = ['Bash'];
 
-    $(tags_id).autocomplete({
-        source: tags_array,
-        select: function (event, ui) {
-            var value = ui.item['value'];
-            // todo: add cliked tag
-            return false;
-        },
-        minLength: 0
-    });
-    $(tags_id).focus(function () {
-        $(tags_id).autocomplete('search', '');
-    });
+    $(tags_id).empty();
+    for (var i = 0; i < tags_array.length; i++) {
+        var tag = tags_array[i];
+        var selected = '';
+        if (selected_tags_array.includes(tag)) {
+            selected = ' selected="selected"';
+        }
+
+        var elem = '<option value="' + tag + '"' + selected + '>' + tag + '</option>';
+        $(tags_id).append(elem);
+    }
+
+    $('.div-tags-init').addClass('display-none');
+    $(tags_id).tokenize2();
 }
 
 function add_tag_request(tag) {
@@ -179,23 +183,31 @@ function add_tag_request(tag) {
             alert('error!!!');
         } else {
             // todo: update tag dropdownmenu
-            // todo: add new tag in input field
+            // todo: add new tag in select
         }
     });
 }
 
 function add_bookmark_request() {
-    // todo: check valid title, tags
+    var title = $(title_input_id).val();
+    if (title.length == 0) {
+        alert('Title should be inputed');
+        return;
+    }
+
+    var tags = JSON.parse(JSON.stringify($(tags_id).val()));
+    if (tags == null || tags.length == 0) {
+        alert('Tags should be selected');
+        return;
+    }
 
     var url = '/' + session_id + '/' + channel + '/bookmarks';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};
-    var title = $(title_input_id).val();
-    // todo: get selected tags
     var bookmarkData = {
         rating: star_ratings,
-        tags: ["Docker", "Bash"],
+        tags: tags,
         title: title,
         url: page_url,
         uuid: newKey,

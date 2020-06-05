@@ -6,12 +6,14 @@
     <script src="popup.js"></script>
     <script src="jquery/js/jquery-1.9.0.min.js"></script>
     <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="tokenize2/tokenize2.js"></script>
 
     <!--css-->
     <link href="popup.css" rel="stylesheet" />
     <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
     <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" />
     <link href="tokenize2/bootstrap-3.3.6.min.css" rel="stylesheet" />
+    <link href="tokenize2/tokenize2.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -22,12 +24,11 @@
     </div>
     <div class="div-menu">Channel</div>
     <div class="channel">
-        <select id="select_channel"></select>
+        <select id="select_channel" class="select-channel"></select>
     </div>
     <div class="div-menu">Tags</div>
-    <div class="ui-widget">
-        <input id="tags" type="text">
-    </div>
+    <select id="tags" class="display-none" multiple></select>
+    <div class="div-tags-init"></div>
     <div class="div-menu">Your Rating(Optional):</div>
     <div id="star_ratings" class="star-ratings">
         <img class="star-unfill-img">

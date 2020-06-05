@@ -1,7 +1,7 @@
 body {
     background-color: #eee;
     width: 230px;
-    height: 303px;
+    height: 321px;
     font-family: 'Roboto', sans-serif;
     padding: 8px;
 }
@@ -21,7 +21,7 @@ input {
     margin-bottom: 3px;
 }
 
-select {
+.select-channel {
     width: 100%;
     height: 30px;
     padding: 3px 3px;
@@ -34,10 +34,18 @@ select {
     appearance: none;
 }
 
-.fixed-height {
-    padding: 1px;
-    max-height: 200px;
-    overflow: auto;
+.display-none {
+    display: none;
+}
+
+.div-tags-init {
+    width: 100%;
+    height: 44px;
+    padding: 0 0 10px 5px;
+    margin-bottom: 10px;
+    border: 1px solid #cdd5e3;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 
 .star-ratings img {
