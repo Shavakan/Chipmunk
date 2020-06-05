@@ -79,7 +79,7 @@ function init_star_ratings_button(star, ratings) {
 
 function init_add_bookmark() {
     $(add_bookmark_button_id).click(function () {
-        add_bookmark_request();
+        parse_bookmark_data();
     });
 }
 
@@ -153,7 +153,6 @@ function refresh_tags() {
 }
 
 function refresh_tags_dropdown_event() {
-    // todo: add new typed tag
     // todo: get default selected tags array
     var selected_tags_array = ['Bash'];
 
@@ -173,22 +172,7 @@ function refresh_tags_dropdown_event() {
     $(tags_id).tokenize2();
 }
 
-function add_tag_request(tag) {
-    tags_array.push(tag);
-
-    var url = '/' + session_id + '/' + channel + '/tags';
-    var query = firebase.database().ref(url);
-    query.set(tags_array, function (error) {
-        if (error) {
-            alert('error!!!');
-        } else {
-            // todo: update tag dropdownmenu
-            // todo: add new tag in select
-        }
-    });
-}
-
-function add_bookmark_request() {
+function parse_bookmark_data() {
     var title = $(title_input_id).val();
     if (title.length == 0) {
         alert('Title should be inputed');
@@ -201,6 +185,21 @@ function add_bookmark_request() {
         return;
     }
 
+    var new_tags = [];
+    for (var i = 0; i < tags.length; i++) {
+        if (tags_array.includes(tags[i]) == false) {
+            new_tags.push(tags[i]);
+        }
+    }
+
+    if (new_tags.length == 0) {
+        add_bookmark_request(title, tags);
+    } else {
+        add_tags_request(title, tags, new_tags, add_bookmark_request);
+    }
+}
+
+function add_bookmark_request(title, tags) {
     var url = '/' + session_id + '/' + channel + '/bookmarks';
     var newKey = firebase.database().ref(url).push().key;
 
@@ -217,9 +216,25 @@ function add_bookmark_request() {
     var query = firebase.database().ref(url);
     query.update(updates, function (error) {
         if (error) {
-            alert('error!!!');
+            alert('add bookmark request fail');
         } else {
             add_connection_request(newKey);
+        }
+    });
+}
+
+function add_tags_request(title, tags, new_tags, successCallback) {
+    for (var i = 0; i < new_tags.length; i++) {
+        tags_array.push(new_tags[i]);
+    }
+
+    var url = '/' + session_id + '/' + channel + '/tags';
+    var query = firebase.database().ref(url);
+    query.set(tags_array, function (error) {
+        if (error) {
+            alert('add tags request fail');
+        } else {
+            successCallback(title, tags);
         }
     });
 }
@@ -240,7 +255,7 @@ function add_connection_request(child_uuid) {
     var query = firebase.database().ref(url);
     query.update(updates, function (error) {
         if (error) {
-            alert('error!!!');
+            alert('add connection request fail');
         } else {
             go_to_chipmunk_page();
         }

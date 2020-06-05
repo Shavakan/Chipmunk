@@ -70,7 +70,7 @@
     Tokenize2.DEBOUNCE = null;
     Tokenize2.DEFAULTS = {
         tokensMaxItems: 0,
-        tokensAllowCustom: false,
+        tokensAllowCustom: true,
         dropdownMaxItems: 10,
         searchMinLength: 0,
         searchMaxLength: 0,
