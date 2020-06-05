@@ -1,6 +1,15 @@
 {
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["react", "jsx-a11y", "import"],
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "extends": [
+    "airbnb",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "jsx-a11y", "import", "@typescript-eslint"],
   "rules": {
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
@@ -12,9 +21,21 @@
     }]
   },
   "settings": {
-    "import/core-modules": []
+    "import/core-modules": [],
+    "react": {
+      "version": "detect"
+    }
+
   },
   "env": {
     "browser": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off" //
+      }
+    }
+  ]
 }
