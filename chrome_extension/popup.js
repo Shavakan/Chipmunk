@@ -164,7 +164,6 @@ function refresh_tags_dropdown_event() {
         },
         minLength: 0
     });
-    $(tags_id).autocomplete('widget').addClass('fixed-height');
     $(tags_id).focus(function () {
         $(tags_id).autocomplete('search', '');
     });
