@@ -2,30 +2,46 @@
 <html>
 
 <head>
-    <style>
-        BODY {
-            width: 200px;
-            height: 200px;
-        }
-    </style>
+    <!--js-->
     <script src="popup.js"></script>
+    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="tokenize2/tokenize2.js"></script>
+
+    <!--css-->
+    <link href="popup.css" rel="stylesheet" />
+    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" />
+    <link href="tokenize2/bootstrap-3.3.6.min.css" rel="stylesheet" />
+    <link href="tokenize2/tokenize2.css" rel="stylesheet" />
 </head>
 
 <body>
-    <button class="" type="button">Go to Chipmunk</button>
-    <div>Title</div>
-    <input type="text" id="title" name="title">
-    <div>Tags</div>
-    <input type="text" id="tags" name="tags">
-    <div>Your Rating(Optional):</div>
+    <button id="go_to_chipmunk" type="button">Go to Chipmunk</button>
+    <div class="div-menu">Title</div>
     <div>
-        <img src="star.png" style="width:20px;height:20px;">
-        <img src="star.png" style="width:20px;height:20px;">
-        <img src="star.png" style="width:20px;height:20px;">
-        <img src="star.png" style="width:20px;height:20px;">
-        <img src="star.png" style="width:20px;height:20px;">
+        <input id="title" type="text" id="title" name="title">
     </div>
-    <button class="" type="button">Add</button>
+    <div class="div-menu">Channel</div>
+    <div class="channel">
+        <select id="select_channel" class="select-channel"></select>
+    </div>
+    <div class="div-menu">Tags</div>
+    <select id="tags" class="display-none" multiple></select>
+    <div class="div-tags-init"></div>
+    <div class="div-menu">Your Rating(Optional):</div>
+    <div id="star_ratings" class="star-ratings">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+        <img class="star-unfill-img">
+    </div>
+    <button id="add_bookmark" type="button">Add</button>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
 </body>
 
 </html>

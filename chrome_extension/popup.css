@@ -1,0 +1,63 @@
+body {
+    background-color: #eee;
+    width: 230px;
+    height: 321px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px;
+}
+
+button {
+    width: 100%;
+    height: 30px;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+}
+
+.div-menu{
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.select-channel {
+    width: 100%;
+    height: 30px;
+    padding: 3px 3px;
+    border: 1px solid #999;
+    font-family: inherit;
+    background: url('resources/arrow.png') no-repeat 95% 50%;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.display-none {
+    display: none;
+}
+
+.div-tags-init {
+    width: 100%;
+    height: 44px;
+    padding: 0 0 10px 5px;
+    margin-bottom: 10px;
+    border: 1px solid #cdd5e3;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.star-ratings img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.star-unfill-img {
+    content: url("resources/star_unfill.png");
+}
+
+.star-fill-img {
+    content: url("resources/star_fill.png");
+}
