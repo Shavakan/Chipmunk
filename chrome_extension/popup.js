@@ -3,9 +3,11 @@ const add_bookmark_button_id = '#add_bookmark';
 const title_input_id = '#title';
 const tags_id = '#tags';
 const star_ratings_id = '#star_ratings';
+const chipmunk_page_url = 'https://example.com';
+const cookie_name = 'chipmunk_cookie_name';
 
 // firebase variable
-var session_id = 'dc4b3b02-a31a-11ea-bb37-0242ac1300';
+var user_uuid = '';
 var channels_array = [];
 var tags_array = [];
 
@@ -20,12 +22,36 @@ function onLoad() {
     init_title();
     init_star_ratings();
     init_add_bookmark();
+    init_cookie(function () {
+        refresh_channels();
+    });
 
-    refresh_channels();
     set_star_ratings(3);
 }
 
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
 window.onload = onLoad;
+
+function init_cookie(callback) {
+    chrome.cookies.get({ url: chipmunk_page_url, name: cookie_name },
+        function (cookie) {
+            if (cookie) {
+                user_uuid = cookie.value;
+
+            }
+            else {
+                user_uuid = uuidv4();
+                chrome.cookies.set({ url: chipmunk_page_url, name: cookie_name, value: user_uuid })
+            }
+
+            callback();
+        });
+}
 
 function init_firebase() {
     var firebaseConfig = {
@@ -49,9 +75,7 @@ function init_go_to_chipmunk() {
 }
 
 function go_to_chipmunk_page() {
-    // todo: go to chipmunk page with session id
-    var newURL = 'https://www.google.com';
-    chrome.tabs.create({ url: newURL });
+    chrome.tabs.create({ url: chipmunk_page_url });
 }
 
 function init_title(title_string) {
@@ -84,7 +108,7 @@ function init_add_bookmark() {
 }
 
 function refresh_channels() {
-    var url = '/' + session_id;
+    var url = '/' + user_uuid;
     var query = firebase.database().ref(url).orderByKey();
     query.once('value')
         .then(function (snapshot) {
@@ -137,7 +161,7 @@ function set_star_ratings(ratings) {
 }
 
 function refresh_tags() {
-    var url = '/' + session_id + '/' + channel + '/tags';
+    var url = '/' + user_uuid + '/' + channel + '/tags';
     var query = firebase.database().ref(url).orderByKey();
     query.once('value')
         .then(function (snapshot) {
@@ -200,7 +224,7 @@ function parse_bookmark_data() {
 }
 
 function add_bookmark_request(title, tags) {
-    var url = '/' + session_id + '/' + channel + '/bookmarks';
+    var url = '/' + user_uuid + '/' + channel + '/bookmarks';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};
@@ -228,7 +252,7 @@ function add_tags_request(title, tags, new_tags, successCallback) {
         tags_array.push(new_tags[i]);
     }
 
-    var url = '/' + session_id + '/' + channel + '/tags';
+    var url = '/' + user_uuid + '/' + channel + '/tags';
     var query = firebase.database().ref(url);
     query.set(tags_array, function (error) {
         if (error) {
@@ -240,7 +264,7 @@ function add_tags_request(title, tags, new_tags, successCallback) {
 }
 
 function add_connection_request(child_uuid) {
-    var url = '/' + session_id + '/' + channel + '/connections';
+    var url = '/' + user_uuid + '/' + channel + '/connections';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};

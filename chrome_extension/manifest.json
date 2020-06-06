@@ -9,6 +9,7 @@
     },
     "permissions": [
         "tabs",
+        "cookies",
         "<all_urls>"
     ],
     "content_security_policy": "script-src 'self' https://www.gstatic.com https://*.firebaseio.com; object-src 'self'"
