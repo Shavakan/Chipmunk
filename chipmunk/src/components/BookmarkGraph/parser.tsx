@@ -5,9 +5,10 @@ import { TreeNode } from './node';
 
 export async function newTree() : Promise<TreeNode> {
   // const bookmarks : Map<String, Bookmark> = (await getBookmarks({})).data;
-  const bookmarks : Bookmark[] = Object.values((await getBookmarks({})).data);
+  const bookmarks : Bookmark[] = Object.values((await getBookmarks({})).data || {});
   // const connections : Map<String, Connection> = (await getConnections({})).data;
-  const connections : Connection[] = Object.values((await getConnections({})).data);
+  const connections : Connection[] = Object.values((await getConnections({})).data || {});
+  console.log("no of connections : ", connections.length);
   // select all bookmarks that are roots (i.e. the connections do not have it as the child.)
   const roots = bookmarks.filter(is_root(connections));
 
@@ -19,17 +20,14 @@ export async function newTree() : Promise<TreeNode> {
     }
     parent.children.push(child);
   });
-  console.log("newTree : roots : ", roots);
-
   // TODO : return multiple roots and draw graph for each of them.
   return roots[0];
 }
 
 const is_root = (connections: Connection[]) => {
   return (bm: Bookmark) : Boolean => { 
-    console.log(bm); 
     return !connections.some((c : Connection) => {
-      bm.uuid === c.child_uuid
+      return bm.uuid == c.child_uuid
     });
   };
 };
