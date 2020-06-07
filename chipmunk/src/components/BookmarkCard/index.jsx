@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import BookmarkCardTag from "../BookmarkCardTag";
 import BookmarkPopup from "../BookmarkPopup";
+import { getBookmark, getBookmarks } from "../../api";
 import "./BookmarkCard.scss";
 
 
@@ -44,23 +45,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BookmarkCard() {
+
+const BookmarkCard = function BookmarkCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [bookmark, setBookmark] = React.useState('');
+  const [comments, setComments] = React.useState(0)
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const getBookmarkData = async () => {
+    const data = await getBookmark(props.bookmarkId);
+    setBookmark(data.data);
   };
+
+  React.useEffect(() => {
+    if (!bookmark) {
+      getBookmarkData();
+    }
+  }, []);
 
   return (
     <Card className={classes.root}>
       <CardHeader
         action={
           <div>
-            <Box className={classes.rate}>★ 3.5</Box>
+            <Box className={classes.rate}>★ {bookmark.rating}</Box>
           </div>
         }
-        title="Docker Starter - What is Docker?"
+        title={bookmark.title}
       />
       <div className={classes.tagContainer}>
         <BookmarkCardTag></BookmarkCardTag>
@@ -73,3 +84,5 @@ export default function BookmarkCard() {
     </Card>
   );
 }
+
+export default BookmarkCard;

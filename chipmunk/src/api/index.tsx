@@ -5,13 +5,16 @@ const URL = "https://chipmunk-89590.firebaseio.com/";
 const user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
 
 // https://chipmunk-89590.firebaseio.com/dc4b3b02-a31a-11ea-bb37-0242ac130002/bookmarks.json
-export const getBookmarks = async ({}: any) => await axios.get(`${URL}/${user_id}/bookmarks.json`);
+export const getBookmarks = async (user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/users/${user_id}/bookmarks.json`);
+
+// https://chipmunk-89590.firebaseio.com/dc4b3b02-a31a-11ea-bb37-0242ac130002/bookmarks/.json
+export const getBookmark = async (bookmark_id: any, user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/users/${user_id}/bookmarks/${bookmark_id}.json`);
 
 // https://chipmunk-89590.firebaseio.com/dc4b3b02-a31a-11ea-bb37-0242ac130002/connections.json
-export const getConnections = async ({}: any) => await axios.get(`${URL}/${user_id}/connections.json`);
+export const getConnections = async (user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/users/${user_id}/connections.json`);
 
 // https://chipmunk-89590.firebaseio.com/dc4b3b02-a31a-11ea-bb37-0242ac130002/comments.json
-export const getComments = async ({}: any) => await axios.get(`${URL}/${user_id}/comments.json`);
+export const getComments = async (user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/users/${user_id}/comments.json`);
 
 // TODO : define all APIS.
 export const insertDummyBookmark = async ({}: any) => {

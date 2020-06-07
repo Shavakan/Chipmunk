@@ -5,9 +5,9 @@ import { TreeNode } from './node';
 
 export async function newTree() : Promise<TreeNode> {
   // const bookmarks : Map<String, Bookmark> = (await getBookmarks({})).data;
-  const bookmarks : Bookmark[] = Object.values((await getBookmarks({})).data || {});
+  const bookmarks : Bookmark[] = Object.values((await getBookmarks()).data || {});
   // const connections : Map<String, Connection> = (await getConnections({})).data;
-  const connections : Connection[] = Object.values((await getConnections({})).data || {});
+  const connections : Connection[] = Object.values((await getConnections()).data || {});
   console.log("no of connections : ", connections.length);
   // select all bookmarks that are roots (i.e. the connections do not have it as the child.)
   const roots = bookmarks.filter(is_root(connections));

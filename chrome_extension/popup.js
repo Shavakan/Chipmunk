@@ -108,7 +108,7 @@ function init_add_bookmark() {
 }
 
 function refresh_channels() {
-    var url = '/' + user_uuid;
+    var url = '/users/' + user_uuid;
     var query = firebase.database().ref(url).orderByKey();
     query.once('value')
         .then(function (snapshot) {
@@ -161,7 +161,7 @@ function set_star_ratings(ratings) {
 }
 
 function refresh_tags() {
-    var url = '/' + user_uuid + '/' + channel + '/tags';
+    var url = '/users/' + user_uuid + '/' + channel + '/tags';
     var query = firebase.database().ref(url).orderByKey();
     query.once('value')
         .then(function (snapshot) {
@@ -224,7 +224,7 @@ function parse_bookmark_data() {
 }
 
 function add_bookmark_request(title, tags) {
-    var url = '/' + user_uuid + '/' + channel + '/bookmarks';
+    var url = '/users/' + user_uuid + '/' + channel + '/bookmarks';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};
@@ -252,7 +252,7 @@ function add_tags_request(title, tags, new_tags, successCallback) {
         tags_array.push(new_tags[i]);
     }
 
-    var url = '/' + user_uuid + '/' + channel + '/tags';
+    var url = '/users/' + user_uuid + '/' + channel + '/tags';
     var query = firebase.database().ref(url);
     query.set(tags_array, function (error) {
         if (error) {
@@ -264,7 +264,7 @@ function add_tags_request(title, tags, new_tags, successCallback) {
 }
 
 function add_connection_request(child_uuid) {
-    var url = '/' + user_uuid + '/' + channel + '/connections';
+    var url = '/users/' + user_uuid + '/' + channel + '/connections';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};
