@@ -39,7 +39,7 @@ const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin = def
   };
 
   return width < 10 ? null : (
-    <svg width={width} height={height}>
+    <svg width={width} height={height} className="bookmark-graph">
       <LinearGradient id="lg" from={peach} to={pink} />
       <rect width={width} height={height} rx={14} fill={background} />
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
