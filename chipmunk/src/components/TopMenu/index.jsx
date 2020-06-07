@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChannelSideBar from "../ChannelSideBar";
 import BookmarkMenuBar from "../BookmarkMenuBar";
-import SampleVX from "../SampleVX";
+import BookmarkGraph from "../BookmarkGraph";
 
+import { newTree } from "../BookmarkGraph/parser";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,8 +27,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopMenu() {
+
+// export type TopMenuProps = {
+// }
+
+const TopMenu = function() {
   const classes = useStyles();
+
+  const [tree, setTree] = useState({});
+  // The effect to run when the component is generated.
+  useEffect(
+    () => {
+      (async () => {
+        const newtree = await newTree();
+        console.log("TopMenu : ", newtree)
+        setTree(newtree);
+      })();
+    }, []);
 
   return (
     <AppBar position="static">
@@ -38,7 +54,14 @@ export default function TopMenu() {
         <ChannelSideBar></ChannelSideBar>
       </Toolbar>
       <BookmarkMenuBar></BookmarkMenuBar>
-      <SampleVX width={600} height={600*0.6}></SampleVX>
+      <BookmarkGraph 
+        width={600}
+        height={600*0.6}
+        tree={tree}
+        setTree={setTree}
+      ></BookmarkGraph>
     </AppBar>
   );
 }
+
+export default TopMenu;
