@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Modal from '@material-ui/core/Modal';
@@ -47,7 +47,7 @@ import "./BookmarkPopup.scss";
     const handleClose = () => {
       setOpen(false);
     };
-  
+
     const body = (
       <div style={modalStyle} className={classes.paper}>
         <h2 id="simple-modal-title">Docker Starter - What is Docker?</h2>
@@ -60,17 +60,16 @@ import "./BookmarkPopup.scss";
                 color="secondary"
                 size="small"
                 className={classes.button}
-                startIcon={<DeleteIcon />}
-            >
-            Delete
+                // startIcon={<DeleteIcon />}
+            >Delete
             </Button>
-            <div class="divider"/>
+            <div className="divider"/>
             <Button
                 variant="contained"
                 color="primary"
                 size="small"
                 className={classes.button}
-                startIcon={<SaveIcon />}
+                // startIcon={<SaveIcon />}
             >
             Save
             </Button>
@@ -79,7 +78,7 @@ import "./BookmarkPopup.scss";
     );
   
     return (
-      <div>
+      <div style={{marginRight: "10px"}}>
         <Button onClick={handleOpen} className={classes.info}>More Info</Button>
         <Modal
           open={open}

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CommentIcon from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import StarRateIcon from '@material-ui/icons/StarRate';
@@ -14,7 +16,7 @@ import "./BookmarkCard.scss";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
-    maxHeight: 200,
+    maxHeight: 700,
   },
   tagContainer: {
     flex: 1,
@@ -38,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
   comments: {
     paddingLeft: 10,
     paddingRight: 165,
-  }
+    fontSize: 12,
+  },
 }));
 
 export default function BookmarkCard() {
@@ -54,10 +57,7 @@ export default function BookmarkCard() {
       <CardHeader
         action={
           <div>
-            <IconButton className={classes.star} aria-label="settings">
-              <StarRateIcon style={{ fontSize: 35 }}></StarRateIcon>
-            </IconButton>
-            <box className={classes.rate}>3.5</box>
+            <Box className={classes.rate}>★ 3.5</Box>
           </div>
         }
         title="Docker Starter - What is Docker?"
@@ -66,14 +66,10 @@ export default function BookmarkCard() {
         <BookmarkCardTag></BookmarkCardTag>
       </div>
       <CardActions disableSpacing>
-          <box className={classes.comments}>
-            <box style={{ fontSize: 12 }}>3</box>
-            <IconButton>
-              <CommentIcon />
-            </IconButton>
-          </box>
-          <BookmarkPopup className={classes.info}></BookmarkPopup>
-      </CardActions>
+          <Box className={classes.comments} flexShrink={0}>
+            3 Comments
+          </Box>
+          <Box flexShrink={0}><BookmarkPopup className={classes.info}></BookmarkPopup></Box>      </CardActions>
     </Card>
   );
 }
