@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 96,
         width: drawerWidth,
         borderRight: 0,
-        backgroundColor: "#A4BBC8",
+        backgroundColor: "#F19953",
       },
       toolbar: {
         minHeight: 64,
@@ -48,11 +48,11 @@ export default function ChannelSideBar() {
             paper: classes.paper
         }}
     >
-        <div className={classes.toolbar}>
-        </div>
+        {/* <div className={classes.toolbar}>
+        </div> */}
         <Divider />
         <List>
-        {/* TODO: Make Docker look like selected */}
+        {/* TODO(changwon): Make Docker look like selected */}
         {['Docker', 'AWS', 'VueJS', 'AngularJS'].map((text, index) => (
             <ListItem button key={text}>
             <ListItemText primary={text} />

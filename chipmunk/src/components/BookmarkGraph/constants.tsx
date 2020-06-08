@@ -6,4 +6,4 @@ export const green = '#26deb0';
 export const plum = '#71248e';
 export const lightpurple = '#374469';
 export const white = '#ffffff';
-export const background = '#272b4d';
+export const background = '#e8dfc4';

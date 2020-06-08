@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     marginLeft: 160,
-    backgroundColor: "#7191A3",
+    backgroundColor: "#FCE4D8",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
   },

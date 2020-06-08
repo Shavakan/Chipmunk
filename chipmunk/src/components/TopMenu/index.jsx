@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     minHeight: 96,
-    backgroundColor: "#7191A3",
+    backgroundColor: "#934B00",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
   },
@@ -46,21 +46,23 @@ const TopMenu = function() {
     }, []);
 
   return (
+    <div>
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h3" className={classes.title}>
+        <Typography variant="h3" color="inherit" className={classes.title}>
           My Cheek Pouch 
         </Typography>
         <ChannelSideBar></ChannelSideBar>
       </Toolbar>
       <BookmarkMenuBar></BookmarkMenuBar>
+    </AppBar>
       <BookmarkGraph 
         width={600}
         height={600*0.6}
         tree={tree}
         setTree={setTree}
       ></BookmarkGraph>
-    </AppBar>
+    </div>
   );
 }
 
