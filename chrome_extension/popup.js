@@ -3,7 +3,7 @@ const add_bookmark_button_id = '#add_bookmark';
 const title_input_id = '#title';
 const tags_id = '#tags';
 const star_ratings_id = '#star_ratings';
-const chipmunk_page_url = 'https://example.com';
+const chipmunk_page_url = 'https://zoonoo.github.io/chipmunk';
 const cookie_name = 'chipmunk_cookie_name';
 
 // firebase variable
@@ -41,11 +41,14 @@ function init_cookie(callback) {
     chrome.cookies.get({ url: chipmunk_page_url, name: cookie_name },
         function (cookie) {
             if (cookie) {
-                user_uuid = cookie.value;
-
+                // todo: cookie
+                //user_uuid = cookie.value;
+                user_uuid = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
             }
             else {
-                user_uuid = uuidv4();
+                // todo: cookie
+                //user_uuid = uuidv4();
+                user_uuid = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
                 chrome.cookies.set({ url: chipmunk_page_url, name: cookie_name, value: user_uuid })
             }
 
@@ -178,7 +181,7 @@ function refresh_tags() {
 
 function refresh_tags_dropdown_event() {
     // todo: get default selected tags array
-    var selected_tags_array = ['Bash'];
+    var selected_tags_array = [tags_array[0]];
 
     $(tags_id).empty();
     for (var i = 0; i < tags_array.length; i++) {
@@ -224,26 +227,28 @@ function parse_bookmark_data() {
 }
 
 function add_bookmark_request(title, tags) {
-    var url = '/users/' + user_uuid + '/' + channel + '/bookmarks';
-    var newKey = firebase.database().ref(url).push().key;
+    get_last_bookmark_uuid(function (parent_bookmark_uuid) {
+        var url = '/users/' + user_uuid + '/' + channel + '/bookmarks';
+        var newKey = firebase.database().ref(url).push().key;
 
-    var updates = {};
-    var bookmarkData = {
-        rating: star_ratings,
-        tags: tags,
-        title: title,
-        url: page_url,
-        uuid: newKey,
-    };
-    updates[newKey] = bookmarkData;
+        var updates = {};
+        var bookmarkData = {
+            rating: star_ratings,
+            tags: tags,
+            title: title,
+            url: page_url,
+            uuid: newKey,
+        };
+        updates[newKey] = bookmarkData;
 
-    var query = firebase.database().ref(url);
-    query.update(updates, function (error) {
-        if (error) {
-            alert('add bookmark request fail');
-        } else {
-            add_connection_request(newKey);
-        }
+        var query = firebase.database().ref(url);
+        query.update(updates, function (error) {
+            if (error) {
+                alert('add bookmark request fail');
+            } else {
+                add_connection_request(parent_bookmark_uuid, newKey);
+            }
+        });
     });
 }
 
@@ -263,16 +268,32 @@ function add_tags_request(title, tags, new_tags, successCallback) {
     });
 }
 
-function add_connection_request(child_uuid) {
+function get_last_bookmark_uuid(callback) {
+    var url = '/users/' + user_uuid + '/' + channel + '/bookmarks';
+    var query = firebase.database().ref(url);
+    query.once('value')
+        .then(function (snapshot) {
+            var last_bookmark_uuid = '';
+
+            snapshot.forEach(function (childSnapshot) {
+                var key = childSnapshot.key;
+                last_bookmark_uuid = key;
+            });
+
+            callback(last_bookmark_uuid);
+        });
+}
+
+function add_connection_request(parent_uuid, child_uuid) {
     var url = '/users/' + user_uuid + '/' + channel + '/connections';
     var newKey = firebase.database().ref(url).push().key;
 
     var updates = {};
-    // todo: get parent bookmark uuid
     var connectionData = {
         child_uuid: child_uuid,
-        parent_uuid: "good-parent-uuid",
+        parent_uuid: parent_uuid,
         type: ":thumbs-up:",
+        uuid: newKey,
     };
     updates[newKey] = connectionData;
 
