@@ -5,7 +5,7 @@ import { plum, blue, white, green, background } from "./constants";
 
 
 export interface TreeNode {
-    name: string;
+    title: string;
     children?: this[];
   }
   
@@ -37,7 +37,7 @@ export interface TreeNode {
           strokeOpacity={0.6}
           rx={10}
           onClick={() => {
-            alert(`clicked: ${JSON.stringify(node.data.name)}`);
+            alert(`clicked: ${JSON.stringify(node.data.title)}`);
           }}
         />
         <text
@@ -48,7 +48,7 @@ export interface TreeNode {
           fill={green}
           style={{ pointerEvents: 'none' }}
         >
-          {node.data.name}
+          {node.data.title}
         </text>
       </Group>
     );
@@ -66,7 +66,7 @@ export interface TreeNode {
           style={{ pointerEvents: 'none' }}
           fill={plum}
         >
-          {node.data.name}
+          {node.data.title}
         </text>
       </Group>
     );
@@ -89,7 +89,7 @@ export interface TreeNode {
           stroke={blue}
           strokeWidth={1}
           onClick={() => {
-            alert(`clicked: ${JSON.stringify(node.data.name)}`);
+            alert(`clicked: ${JSON.stringify(node.data.title)}`);
           }}
         />
         <text
@@ -100,7 +100,7 @@ export interface TreeNode {
           style={{ pointerEvents: 'none' }}
           fill={white}
         >
-          {node.data.name}
+          {node.data.title}
         </text>
       </Group>
     );

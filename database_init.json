@@ -1,0 +1,50 @@
+{
+	"users": {
+		"dc4b3b02-a31a-11ea-bb37-0242ac130002": {
+			"channels": {
+				"name": "sparcs101",
+				"bookmarks": {
+					"kjlk-adas-bjkj-jkhk-sajs": {
+						"uuid": "kjlk-adas-bjkj-jkhk-sajs",
+						"url": "https://www.sparcs.org/",
+						"rating": 5,
+						"title": "Sparcs Homepage",
+						"tags": [
+							"Docker",
+							"Bash"
+						]
+					},
+					"adfs-dsfa-sdfa-sfds-fadd": {
+						"uuid": "adfs-dsfa-sdfa-sfds-fadd",
+						"url": "https://www.kaist.ac.kr/",
+						"rating": 3,
+						"title": "Kaist Homepage",
+						"tags": [
+							"Docker"
+						]
+					}
+				},
+				"connections": {
+					"vnad-ewkc-xmkl-ewkm-adnx": {
+						"parent_uuid": "kjlk-adas-bjkj-jkhk-sajs",
+						"child_uuid": "adfs-dsfa-sdfa-sfds-fadd",
+						"type": ":thumbs-up:",
+						"uuid": "vnad-ewkc-xmkl-ewkm-adnx"
+					}
+				},
+				"tags": [
+					"Docker",
+					"Bash"
+				]
+			}
+		},
+		"commments": {
+			"e7c603e9-d919-4639-acdf-26504e9f27ae": {
+				"uuid": "e7c603e9-d919-4639-acdf-26504e9f27ae",
+				"text": "This is the best club!",
+				"url": "https://www.sparcs.org/",
+				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002"
+			}
+		}
+	}
+}

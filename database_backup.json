@@ -1,0 +1,99 @@
+{
+  "dc4b3b02-a31a-11ea-bb37-0242ac130002" : {
+    "bookmarks" : {
+      "daaaaaaa-a31a-11ea-bb37-0242ac130002" : {
+        "name" : "MEDIUM",
+        "rating" : 3,
+        "title" : "MEDIUM",
+        "url" : "https://www.medium.com/",
+        "uuid" : "daaaaaaa-a31a-11ea-bb37-0242ac130002"
+      },
+      "dc4b3cf6-a31a-11ea-bb37-0242ac130002" : {
+        "name" : "SPARCS",
+        "rating" : 5,
+        "title" : "SPARCS",
+        "url" : "https://www.sparcs.org/",
+        "uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002"
+      },
+      "dc4b3e7c-a31a-11ea-bb37-0242ac130002" : {
+        "name" : "KAIST",
+        "rating" : 3,
+        "title" : "KAIST",
+        "url" : "https://www.kaist.ac.kr/",
+        "uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002"
+      }
+    },
+    "comments" : {
+      "dc4b4296-a31a-11ea-bb37-0242ac130002" : {
+        "bookmark_uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002",
+        "text" : "This is the best summary of Kubernetes Network!",
+        "url" : "https://www.medium.com/",
+        "uuid" : "dc4b4296-a31a-11ea-bb37-0242ac130002"
+      }
+    },
+    "connections" : {
+      "dbbbbbbb-a31a-11ea-bb37-0242ac130002" : {
+        "child_uuid" : "daaaaaaa-a31a-11ea-bb37-0242ac130002",
+        "parent_uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002",
+        "type" : ":thumbs-up:",
+        "uuid" : "dbbbbbbb-a31a-11ea-bb37-0242ac130002"
+      },
+      "dc4b3f58-a31a-11ea-bb37-0242ac130002" : {
+        "child_uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002",
+        "parent_uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002",
+        "type" : ":thumbs-up:",
+        "uuid" : "dc4b3f58-a31a-11ea-bb37-0242ac130002"
+      }
+    }
+  },
+  "users" : {
+    "dc4b3b02-a31a-11ea-bb37-0242ac130002" : {
+      "bookmarks" : {
+        "daaaaaaa-a31a-11ea-bb37-0242ac130002" : {
+          "name" : "MEDIUM",
+          "rating" : 3,
+          "title" : "MEDIUM",
+          "url" : "https://www.medium.com/",
+          "uuid" : "daaaaaaa-a31a-11ea-bb37-0242ac130002"
+        },
+        "dc4b3cf6-a31a-11ea-bb37-0242ac130002" : {
+          "name" : "SPARCS",
+          "rating" : 5,
+          "title" : "SPARCS",
+          "url" : "https://www.sparcs.org/",
+          "uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002"
+        },
+        "dc4b3e7c-a31a-11ea-bb37-0242ac130002" : {
+          "name" : "KAIST",
+          "rating" : 3,
+          "title" : "KAIST",
+          "url" : "https://www.kaist.ac.kr/",
+          "uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002"
+        }
+      },
+      "comments" : {
+        "dc4b4296-a31a-11ea-bb37-0242ac130002" : {
+          "bookmark_uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002",
+          "text" : "This is the best summary of Kubernetes Network!",
+          "url" : "https://www.medium.com/",
+          "user_id" : "dc4b3b02-a31a-11ea-bb37-0242ac130002",
+          "uuid" : "dc4b4296-a31a-11ea-bb37-0242ac130002"
+        }
+      },
+      "connections" : {
+        "dbbbbbbb-a31a-11ea-bb37-0242ac130002" : {
+          "child_uuid" : "daaaaaaa-a31a-11ea-bb37-0242ac130002",
+          "parent_uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002",
+          "type" : ":thumbs-up:",
+          "uuid" : "dbbbbbbb-a31a-11ea-bb37-0242ac130002"
+        },
+        "dc4b3f58-a31a-11ea-bb37-0242ac130002" : {
+          "child_uuid" : "dc4b3e7c-a31a-11ea-bb37-0242ac130002",
+          "parent_uuid" : "dc4b3cf6-a31a-11ea-bb37-0242ac130002",
+          "type" : ":thumbs-up:",
+          "uuid" : "dc4b3f58-a31a-11ea-bb37-0242ac130002"
+        }
+      }
+    }
+  }
+}
