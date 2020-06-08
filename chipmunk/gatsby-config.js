@@ -60,12 +60,6 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: config.siteGATrackingID
-      }
-    },
-    {
       resolve: "gatsby-plugin-nprogress",
       options: {
         color: "#c62828"
@@ -75,7 +69,6 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-catch-links",
     "gatsby-plugin-netlify-cms",
-    "gatsby-plugin-twitter",
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
