@@ -7,7 +7,7 @@ const ConnectionImage = function ConnectionImage(props) {
       left: props.left,
   };
 
-  var src = "/logos/" + props.src;
+  var src = "https://zoonoo.github.io/chipmunk/logos/" + props.src;
 
   // todo: implement click for changing type
   return (
