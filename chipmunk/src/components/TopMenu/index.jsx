@@ -8,6 +8,9 @@ import BookmarkMenuBar from "../BookmarkMenuBar";
 import BookmarkGraph from "../BookmarkGraph";
 
 import { newTree } from "../BookmarkGraph/parser";
+import ConnectionImagesBox from "../ConnectionImagesBox";
+
+const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 // export type TopMenuProps = {
 // }
 
 const TopMenu = function() {
   const classes = useStyles();
-
   const [tree, setTree] = useState({});
+  const [enableImages, setEnableImages] = useState(false);
+
   // The effect to run when the component is generated.
   useEffect(
     () => {
@@ -42,26 +45,37 @@ const TopMenu = function() {
         const newtree = await newTree();
         console.log("TopMenu : ", newtree)
         setTree(newtree);
+        setEnableImages(true);
       })();
     }, []);
 
+  const width = 600;
+  const height = 600*0.6;
+
   return (
     <div>
-    <AppBar position="static">
-      <Toolbar className={classes.toolbar}>
-        <Typography variant="h3" color="inherit" className={classes.title}>
-          My Cheek Pouch 
-        </Typography>
-        <ChannelSideBar></ChannelSideBar>
-      </Toolbar>
-      <BookmarkMenuBar></BookmarkMenuBar>
-    </AppBar>
+      <AppBar position="static">
+        <Toolbar className={classes.toolbar}>
+          <Typography variant="h3" color="inherit" className={classes.title}>
+            My Cheek Pouch
+          </Typography>
+          <ChannelSideBar></ChannelSideBar>
+        </Toolbar>
+        <BookmarkMenuBar></BookmarkMenuBar>
+      </AppBar>
       <BookmarkGraph 
-        width={600}
-        height={600*0.6}
+        width={width}
+        height={height}
+        margin={defaultMargin}
         tree={tree}
         setTree={setTree}
       ></BookmarkGraph>
+      <ConnectionImagesBox
+        enableImages={enableImages}
+        width={width}
+        height={height}
+        marginLeft={defaultMargin.left}
+        marginTop={defaultMargin.top}></ConnectionImagesBox>
     </div>
   );
 }

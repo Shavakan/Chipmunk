@@ -9,17 +9,15 @@ import { TreeNode, Node } from "./node";
 
 import { insertDummyBookmark } from "../../api";
 
-const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
-
 export type GraphProps = {
   tree: TreeNode
   width: number;
   height: number;
-  margin?: { top: number; right: number; bottom: number; left: number };
+  margin: { top: number; right: number; bottom: number; left: number };
   setTree?: Function
 };
 
-const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin = defaultMargin }: GraphProps) {
+const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin }: GraphProps) {
   const data = useMemo(() => hierarchy(tree), [tree]);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
@@ -39,7 +37,7 @@ const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin = def
   };
 
   return width < 10 ? null : (
-    <svg width={width} height={height} className="bookmark-graph">
+    <svg id="bookmark-graph-svg" width={width} height={height} className="bookmark-graph">
       <LinearGradient id="lg" from={peach} to={pink} />
       {/* <rect width={width} height={height} rx={14} fill={background} /> */}
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
