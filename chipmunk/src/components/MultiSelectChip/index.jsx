@@ -39,11 +39,11 @@ const MenuProps = {
 
 // TODO(changwon): Get tags from Firebase
 const tags = [
-    "Docker",
-    "React",
-    "AngularJS",
-    "VueJS",
-    "Starter"
+  "Docker",
+  "React",
+  "AngularJS",
+  "VueJS",
+  "Starter"
 ];
 
 function getStyles(tag, tagName, theme) {
@@ -85,7 +85,7 @@ export default function MultiSelectChip() {
           className={classes.select}
         >
           {tags.map((tag) => (
-            <MenuItem key={tag} value={tag} style={getStyles(name, tagName, theme)}>
+            <MenuItem key={tag} value={tag} style={getStyles(tag, tagName, theme)}>
               {tag}
             </MenuItem>
           ))}
