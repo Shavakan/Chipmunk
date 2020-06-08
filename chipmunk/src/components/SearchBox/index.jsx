@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
+    // padding: "8px 0",
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    // marginTop: -8,
   },
   inputRoot: {
     color: 'inherit',
