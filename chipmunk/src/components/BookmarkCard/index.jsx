@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import BookmarkCardTag from "../BookmarkCardTag";
 import BookmarkPopup from "../BookmarkPopup";
-import { getBookmark, getBookmarks } from "../../api";
+import { getBookmark, getComments } from "../../api";
 import "./BookmarkCard.scss";
 
 
@@ -48,13 +48,22 @@ const useStyles = makeStyles((theme) => ({
 
 const BookmarkCard = function BookmarkCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
   const [bookmark, setBookmark] = React.useState('');
-  const [comments, setComments] = React.useState(0)
+  const [comments, setComments] = React.useState('');
 
   const getBookmarkData = async () => {
-    const data = await getBookmark(props.bookmarkId);
-    setBookmark(data.data);
+    const data = (await getBookmark(props.bookmarkId)).data;
+    setBookmark(data);
+
+    const comments = Object.values((await getComments()).data);
+    const commentsData = [];
+    comments.forEach(function(comment) {
+      if (comment.url === data.url) {
+        commentsData.push(comment);
+      }
+    })
+    // console.log(data.tags);
+    setComments(commentsData);
   };
 
   React.useEffect(() => {
@@ -74,13 +83,14 @@ const BookmarkCard = function BookmarkCard(props) {
         title={bookmark.title}
       />
       <div className={classes.tagContainer}>
-        <BookmarkCardTag></BookmarkCardTag>
+        <BookmarkCardTag tags={bookmark.tags}></BookmarkCardTag>
+      
       </div>
       <CardActions disableSpacing>
           <Box className={classes.comments} flexShrink={0}>
-            3 Comments
+             {comments.length} Comments
           </Box>
-          <Box flexShrink={0}><BookmarkPopup className={classes.info}></BookmarkPopup></Box>      </CardActions>
+          <Box flexShrink={0}><BookmarkPopup className={classes.info} bookmark={bookmark} comments={comments}></BookmarkPopup></Box>      </CardActions>
     </Card>
   );
 }

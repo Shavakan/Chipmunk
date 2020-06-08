@@ -17,31 +17,38 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  export default function TagsArray() {
+  
+  export default function TagsArray(props) {
     const classes = useStyles();
-    const [chipData, setChipData] = React.useState([
-      { key: 0, label: 'docker' },
-      { key: 1, label: 'starter' },
-    ]);
+    const [chipData, setChipData] = React.useState();
+
+    React.useEffect(() => {
+      if (!chipData) {
+        setChipData(props.tags);
+      }
+    })
+
+    // 시간이 좀 걸림
+    if (chipData && chipData.length >=0 ) {
+      console.log(chipData)
+      return (
+        <Paper component="ul" className={classes.root} elevation={0}>
+          {chipData.map((data) => {
+            let icon;
+            return (
+              <li key={data}>
+                <Chip
+                  icon={icon}
+                  label={data}
+                  className={classes.chip}
+                />
+              </li>
+            );
+          })}
   
-    const handleDelete = (chipToDelete) => () => {
-      setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-    };
-  
-    return (
-      <Paper component="ul" className={classes.root} elevation={0}>
-        {chipData.map((data) => {
-          let icon;
-          return (
-            <li key={data.key}>
-              <Chip
-                icon={icon}
-                label={data.label}
-                className={classes.chip}
-              />
-            </li>
-          );
-        })}
-      </Paper>
-    );
+        </Paper>
+      );
+    } else {
+      return (<p>Loading...</p>)
+    }
   }
