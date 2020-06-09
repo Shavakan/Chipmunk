@@ -10,6 +10,10 @@ export const getBookmarks = async (user_id = "dc4b3b02-a31a-11ea-bb37-0242ac1300
 // https://chipmunk-89590.firebaseio.com/users/dc4b3b02-a31a-11ea-bb37-0242ac130002/channels/bookmarks/.json
 export const getBookmark = async (bookmark_id: any, user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/${user_id}/channels/bookmarks/${bookmark_id}.json`);
 
+export const patchBookmark = async (bookmark_id: any, body: any, user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => {
+    await axios.patch(`${URL}/${user_id}/channels/bookmarks/${bookmark_id}.json`, body);
+};
+
 // https://chipmunk-89590.firebaseio.com/users/dc4b3b02-a31a-11ea-bb37-0242ac130002/channels/connections.json
 export const getConnections = async (user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002") => await axios.get(`${URL}/${user_id}/channels/connections.json`);
 

@@ -62,7 +62,6 @@ const BookmarkCard = function BookmarkCard(props) {
         commentsData.push(comment);
       }
     })
-    // console.log(data.tags);
     setComments(commentsData);
   };
 
@@ -90,7 +89,7 @@ const BookmarkCard = function BookmarkCard(props) {
           <Box className={classes.comments} flexShrink={0}>
              {comments.length} Comments
           </Box>
-          <Box flexShrink={0}><BookmarkPopup className={classes.info} bookmark={bookmark} comments={comments}></BookmarkPopup></Box>      </CardActions>
+          <Box flexShrink={0}><BookmarkPopup className={classes.info} bookmark={bookmark} bookmarkId={bookmark.uuid} comments={comments}></BookmarkPopup></Box>      </CardActions>
     </Card>
   );
 }
