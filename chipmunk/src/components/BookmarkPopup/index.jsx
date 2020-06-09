@@ -70,6 +70,7 @@ import "./BookmarkPopup.scss";
                 size="small"
                 className={classes.button}
                 // startIcon={<SaveIcon />}
+                onClick={() => { setOpen(false); }}
             >
             Save
             </Button>
