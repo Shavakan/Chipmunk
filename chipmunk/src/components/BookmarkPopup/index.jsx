@@ -34,7 +34,7 @@ import "./BookmarkPopup.scss";
     }
   }));
   
-  export default function BookmarkPopup() {
+  export default function BookmarkPopup(props) {
     const classes = useStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
@@ -50,9 +50,9 @@ import "./BookmarkPopup.scss";
 
     const body = (
       <div style={modalStyle} className={classes.paper}>
-        <h2 id="simple-modal-title">Docker Starter - What is Docker?</h2>
-        <StarRating></StarRating>
-        <Comment></Comment>
+        <h2 id="simple-modal-title">{props.bookmark.title}</h2>
+        <StarRating rating={props.bookmark.rating}></StarRating>
+        <Comment comments={props.comments}></Comment>
         <CommentInput></CommentInput>
         <div id="buttons">
             <Button
