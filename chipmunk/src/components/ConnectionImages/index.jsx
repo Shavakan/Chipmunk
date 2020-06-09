@@ -3,6 +3,7 @@ import ConnectionImage from "../ConnectionImage";
 
 const ConnectionImages = function ConnectionImages(props) {
   var [images, setImages] = useState([]);
+  var [connectionUUid, setConnectionUUid] = useState("");
 
   useEffect(() => {
       var nodes = [];
@@ -40,6 +41,7 @@ const ConnectionImages = function ConnectionImages(props) {
             if (props.connections[key]['type'] == ':no:') {
               type = 'no.jpg';
             }
+            setConnectionUUid(props.connections[key]['uuid']);
             break;
           }
         }
@@ -58,6 +60,7 @@ const ConnectionImages = function ConnectionImages(props) {
     <>
       {images.map(image => (
         <ConnectionImage
+          connectionUUid={connectionUUid}
           key={image.id}
           top={image.top}
           left={image.left}

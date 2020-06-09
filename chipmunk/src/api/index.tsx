@@ -40,3 +40,7 @@ export const insertDummyBookmark = async ({}: any) => {
 
     await axios.put(`${URL}/${user_id}/channels/connections/dbbbbbbb-a31a-11ea-bb37-0242ac130002.json`, dummyConnectionBody);
 };
+
+export const setConnectionType = async (uuid: string, type: string) => {
+    await axios.put(`${URL}/${user_id}/channels/connections/${uuid}/type`, type);
+}
