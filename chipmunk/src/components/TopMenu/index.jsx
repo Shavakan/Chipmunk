@@ -9,6 +9,7 @@ import BookmarkGraph from "../BookmarkGraph";
 
 import { newTree } from "../BookmarkGraph/parser";
 import ConnectionImagesBox from "../ConnectionImagesBox";
+import { getConnections } from "../../api";
 
 const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
 
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const TopMenu = function() {
   const classes = useStyles();
   const [tree, setTree] = useState({});
+  const [connections, setConnections] = useState({});
   const [enableImages, setEnableImages] = useState(false);
 
   // The effect to run when the component is generated.
@@ -43,8 +45,10 @@ const TopMenu = function() {
     () => {
       (async () => {
         const newtree = await newTree();
+        const connection = await getConnections();
         console.log("TopMenu : ", newtree)
         setTree(newtree);
+        setConnections(connection.data);
         setEnableImages(true);
       })();
     }, []);
@@ -71,6 +75,7 @@ const TopMenu = function() {
         setTree={setTree}
       ></BookmarkGraph>
       <ConnectionImagesBox
+        connections={connections}
         enableImages={enableImages}
         width={width}
         height={height}

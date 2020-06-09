@@ -5,6 +5,7 @@ import { plum, blue, white, green, background } from "./constants";
 
 
 export interface TreeNode {
+    uuid: string;
     title: string;
     children?: this[];
   }
@@ -24,7 +25,7 @@ export interface TreeNode {
     if (isParent) return <ParentNode node={node} />;
   
     return (
-      <Group top={node.x} left={node.y}>
+      <Group id={node.data.uuid} top={node.x} left={node.y}>
         <rect
           height={height}
           width={width}
@@ -56,7 +57,7 @@ export interface TreeNode {
   
   function RootNode({ node }: { node: HierarchyNode }) {
     return (
-      <Group top={node.x} left={node.y}>
+      <Group id={node.data.uuid} top={node.x} left={node.y}>
         <circle r={12} fill="url('#lg')" />
         <text
           dy=".33em"
@@ -79,7 +80,7 @@ export interface TreeNode {
     const centerY = -height / 2;
   
     return (
-      <Group top={node.x} left={node.y}>
+      <Group id={node.data.uuid} top={node.x} left={node.y}>
         <rect
           height={height}
           width={width}
