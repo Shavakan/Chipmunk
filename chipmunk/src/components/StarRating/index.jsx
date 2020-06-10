@@ -5,6 +5,9 @@ import Box from '@material-ui/core/Box';
 import Star from '@material-ui/icons/Star';
 import { patchBookmark } from "../../api";
 
+
+// Code adapted from rating example from material-ui homepage:
+// https://material-ui.com/components/rating/
 export default function StarRating(props) {
   const [value, setValue] = React.useState(props.rating);
   const [bookmarkId, setBookmarkId] = React.useState();

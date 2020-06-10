@@ -34,9 +34,11 @@ import "./BookmarkPopup.scss";
     }
   }));
   
+  // Code adapted from hanblueblue example:
+  // https://velog.io/@hanblueblue/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B2%8C%EC%8B%9C%ED%8C%90-front-%EB%A6%AC%ED%8E%99%ED%86%A0%EB%A7%81-5-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%88%98%EC%A0%95-%EC%9A%94%EC%B2%AD%ED%95%98%EA%B8%B0
   export default function BookmarkPopup(props) {
     const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
+    
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
   
