@@ -16,6 +16,7 @@ import "./BookmarkCard.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: "absolute",
     maxWidth: 350,
     maxHeight: 700,
   },
@@ -46,14 +47,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const BookmarkCard = function BookmarkCard(props) {
+const BookmarkCard = function BookmarkCard({bookmark }) {
   const classes = useStyles();
-  const [bookmark, setBookmark] = React.useState('');
+  // const [bookmark, setBookmark] = React.useState('');
   const [comments, setComments] = React.useState('');
 
   const getBookmarkData = async () => {
-    const data = (await getBookmark(props.bookmarkId)).data;
-    setBookmark(data);
+    // const data = (await getBookmark(props.bookmarkId)).data;
+    // setBookmark(data);
 
     const comments = Object.values((await getComments()).data);
     const commentsData = [];

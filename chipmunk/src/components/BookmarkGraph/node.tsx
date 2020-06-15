@@ -1,8 +1,7 @@
 import React from 'react';
 import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { Group } from '@vx/group';
-import { plum, blue, white, green, background } from "./constants";
-
+import BookmarkCard from "../BookmarkCard";
 
 export interface TreeNode {
     uuid: string;
@@ -14,10 +13,6 @@ export interface TreeNode {
   
   /** Handles rendering Root, Parent, and other Nodes. */
   export function Node({ node }: { node: HierarchyNode }) {
-    const width = 40;
-    const height = 20;
-    const centerX = -width / 2;
-    const centerY = -height / 2;
     const isRoot = node.depth === 0;
     const isParent = !!node.children;
   
@@ -26,31 +21,9 @@ export interface TreeNode {
   
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <rect
-          height={height}
-          width={width}
-          y={centerY}
-          x={centerX}
-          fill={background}
-          stroke={green}
-          strokeWidth={1}
-          strokeDasharray="2,2"
-          strokeOpacity={0.6}
-          rx={10}
-          onClick={() => {
-            alert(`clicked: ${JSON.stringify(node.data.title)}`);
-          }}
-        />
-        <text
-          dy=".33em"
-          fontSize={9}
-          fontFamily="Arial"
-          textAnchor="middle"
-          fill={green}
-          style={{ pointerEvents: 'none' }}
-        >
-          {node.data.title}
-        </text>
+        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+          <BookmarkCard bookmark={node.data}></BookmarkCard>
+        </foreignObject>
       </Group>
     );
   }
@@ -58,17 +31,9 @@ export interface TreeNode {
   function RootNode({ node }: { node: HierarchyNode }) {
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <circle r={12} fill="url('#lg')" />
-        <text
-          dy=".33em"
-          fontSize={9}
-          fontFamily="Arial"
-          textAnchor="middle"
-          style={{ pointerEvents: 'none' }}
-          fill={plum}
-        >
-          {node.data.title}
-        </text>
+        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+          <BookmarkCard bookmark={node.data}></BookmarkCard>
+        </foreignObject>
       </Group>
     );
   }
@@ -76,33 +41,12 @@ export interface TreeNode {
   function ParentNode({ node }: { node: HierarchyNode }) {
     const width = 40;
     const height = 20;
-    const centerX = -width / 2;
-    const centerY = -height / 2;
   
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <rect
-          height={height}
-          width={width}
-          y={centerY}
-          x={centerX}
-          fill={background}
-          stroke={blue}
-          strokeWidth={1}
-          onClick={() => {
-            alert(`clicked: ${JSON.stringify(node.data.title)}`);
-          }}
-        />
-        <text
-          dy=".33em"
-          fontSize={9}
-          fontFamily="Arial"
-          textAnchor="middle"
-          style={{ pointerEvents: 'none' }}
-          fill={white}
-        >
-          {node.data.title}
-        </text>
+        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+          <BookmarkCard bookmark={node.data}></BookmarkCard>
+        </foreignObject>
       </Group>
     );
   }

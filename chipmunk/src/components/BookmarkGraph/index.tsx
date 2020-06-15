@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useReducer } from 'react';
 import { Group } from '@vx/group';
 import { Tree, hierarchy } from '@vx/hierarchy';
 import { LinkHorizontal } from '@vx/shape';
@@ -37,7 +37,7 @@ const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin }: Gr
   const xMax = width - margin.left - margin.right;
 
   return width < 10 ? null : (
-    <svg id="bookmark-graph-svg" width={width} height={height} className="bookmark-graph">
+    <svg id="bookmark-graph-svg" width={width+300} height={height} className="bookmark-graph">
       <LinearGradient id="lg" from={peach} to={pink} />
       {/* <rect width={width} height={height} rx={14} fill={background} /> */}
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
