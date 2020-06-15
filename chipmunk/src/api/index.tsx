@@ -21,6 +21,6 @@ export const getConnections = async (user_id = default_user_id) => await axios.g
 // https://chipmunk-89590.firebaseio.com/users/comments.json
 export const getComments = async () => await axios.get(`${URL}/comments.json`);
 
-export const setConnectionType = async (uuid: string, type: string) => {
-    await axios.put(`${URL}/${default_user_id}/${channel_id}/connections/${uuid}/type`, type);
+export const setConnectionType = async (uuid: string, data: string) => {
+    await axios.patch(`${URL}/${default_user_id}/${channel_id}/connections/${uuid}.json`, data);
 }

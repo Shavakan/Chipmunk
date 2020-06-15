@@ -1,44 +1,48 @@
 import React, { useState, useEffect } from "react";
+import ConnectionImageMenu from "../ConnectionImageMenu";
 import "./ConnectionImage.scss";
-import { setConnectionType } from "../../api";
 
 const ConnectionImage = function ConnectionImage(props) {
+  const size = 24;
   const buttonStyle = {
       position: 'absolute',
       top: props.top,
       left: props.left,
-      width: '16px',
-      height: '16px',
+      width: `${size}px`,
+      height: `${size}px`,
   }
 
   var path = props.location["origin"];
   var defaultType = props.src;
   var defaultSrc = `${path}/logos/${defaultType}`;
-  var otherSrc = "";
-  var otherType = "";
+  var otherType = "arrow_right.png";
   if (defaultType == "arrow_right.png") {
     otherType = "arrow_right_left.png";
-  } else {
-    otherType = "arrow_right.png";
   }
-  otherSrc = `${path}/logos/${otherType}`;
-  var [src, setSrc] = useState(defaultSrc);
+  var otherSrc = `${path}/logos/${otherType}`;
 
-  // todo: implement click for changing type
+  var [src, setSrc] = useState(defaultSrc);
+  var [showMenu, setShowMenu] = useState(false);
+
   return (
+    <>
       <button
         style={buttonStyle}
         onClick={() => {
-          if (src == defaultSrc) {
-            setSrc(otherSrc);
-            //setConnectionType(props.connectionUUid, otherType);
-          } else {
-            setSrc(defaultSrc);
-            //setConnectionType(props.connectionUUid, defaultType);
-          }
+          setShowMenu(!showMenu);
         }}>
-          <img src={src}></img>
+        <img src={src}>
+        </img>
       </button>
+      {showMenu && <ConnectionImageMenu
+                      src={[defaultSrc, otherSrc]}
+                      top={props.top}
+                      left={props.left}
+                      size={size}
+                      connectionData={props.connectionData}
+                      setSrc={setSrc}
+                      setShowMenu={setShowMenu}></ConnectionImageMenu>}
+    </>
   );
 }
 
