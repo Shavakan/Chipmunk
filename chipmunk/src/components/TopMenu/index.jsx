@@ -7,9 +7,6 @@ import ChannelSideBar from "../ChannelSideBar";
 import BookmarkMenuBar from "../BookmarkMenuBar";
 import BookmarkGraphContainer from "../BookmarkGraphContainer";
 
-import ConnectionImagesBox from "../ConnectionImagesBox";
-import { getConnections } from "../../api";
-
 const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
 
 const useStyles = makeStyles((theme) => ({
@@ -30,28 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// export type TopMenuProps = {
-// }
-
 const TopMenu = function(props) {
   const classes = useStyles();
-  // const [tree, setTree] = useState({});
-  const [connections, setConnections] = useState({});
-  const [enableImages, setEnableImages] = useState(false);
-
-  // The effect to run when the component is generated.
-  useEffect(
-    () => {
-      (async () => {
-        // const newtree = await newTree();
-        const connection = await getConnections();
-        // console.log("TopMenu : ", newtree)
-        // setTree(newtree);
-        setConnections(connection.data);
-        setEnableImages(true);
-      })();
-    }, []);
-
   const width = 600;
   const height = 600*0.6;
 
@@ -69,17 +46,9 @@ const TopMenu = function(props) {
       <BookmarkGraphContainer
         width={width}
         height={height}
-      ></BookmarkGraphContainer>
-
-      <ConnectionImagesBox
         location={props.location}
-        connections={connections}
-        enableImages={enableImages}
-        width={width}
-        height={height}
-        marginLeft={defaultMargin.left}
-        marginTop={defaultMargin.top}>
-        </ConnectionImagesBox>
+        margin={defaultMargin}
+      ></BookmarkGraphContainer>
     </div>
   );
 }

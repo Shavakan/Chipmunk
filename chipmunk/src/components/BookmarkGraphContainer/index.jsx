@@ -6,30 +6,27 @@ import * as connectionActions from '../../store/reducers/connections';
 import BookmarkGraph from '../BookmarkGraph';
 import { parseBookmarks } from './parser';
 import ConnectionImagesBox from "../ConnectionImagesBox";
+import BookmarkPopupContainer from "../BookmarkPopupContainer";
 
-// import { TreeNode } from "../BookmarkGraph/node";
-// // Same as GraphProps
-// export type BookmarkGraphContainerProps = {
-//   tree: TreeNode
-//   tree_?: TreeNode
-//   width: number;
-//   height: number;
-//   margin?: { top: number; right: number; bottom: number; left: number };
-// }
-
-const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
-const BookmarkGraphContainer = ({ tree, width, height, margin = defaultMargin, bookmarkActions, connectionActions }) => {
-
+const BookmarkGraphContainer = ({ 
+    tree,
+    connections,
+    bookmarks,
+    width,
+    height,
+    margin,
+    bookmarkActions,
+    connectionActions,
+    location,
+}) => {
     const [enableImages, setEnableImages] = useState(false);
 
     useEffect(
         () => {
             (async () => {
-                console.log("BookmarkGraphContainer : set image true");
                 setEnableImages(true);
             })();
-        },
-        [tree]
+        }, [tree]
     );
 
     useEffect(
@@ -37,10 +34,8 @@ const BookmarkGraphContainer = ({ tree, width, height, margin = defaultMargin, b
             (async () => {
                 bookmarkActions.getBookmarks();
                 connectionActions.getConnections();
-                // setEnableImages(true);
             })();
-        },
-        []
+        }, []
     );
 
 
@@ -53,14 +48,25 @@ const BookmarkGraphContainer = ({ tree, width, height, margin = defaultMargin, b
                 margin={margin}
             >
             </BookmarkGraph>
+
             <ConnectionImagesBox
+                location={location}
+                connections={connections}
                 enableImages={enableImages}
-                tree={tree}
                 width={width}
                 height={height}
                 marginLeft={margin.left}
                 marginTop={margin.top}>
             </ConnectionImagesBox>
+
+            <BookmarkPopupContainer
+              width={width}
+              height={height}
+              margin={margin}
+              tree={tree}
+              bookmarks={bookmarks}
+            >
+            </BookmarkPopupContainer>
         </div>
         
     );
@@ -72,7 +78,11 @@ function mapStateToProps(state) {
     const bookmarks = state.bookmarks.get('bookmarks') || [];
     const connections = state.connections.get('connections') || [];
     console.log("BookmarkGraphContainer mapStateToProps : ", bookmarks, connections);
-    return { tree: parseBookmarks(bookmarks, connections) }
+    return { 
+        tree: parseBookmarks(bookmarks, connections), 
+        connections: connections,
+        bookmarks: bookmarks
+    };
 }
 
 

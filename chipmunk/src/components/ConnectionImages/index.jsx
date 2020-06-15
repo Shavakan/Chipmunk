@@ -63,7 +63,8 @@ const ConnectionImages = function ConnectionImages(props) {
           key={image.id}
           top={image.top}
           left={image.left}
-          src={image.src}></ConnectionImage>
+          src={image.src}>
+          </ConnectionImage>
       ))}
     </>
   );
