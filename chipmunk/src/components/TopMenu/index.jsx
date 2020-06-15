@@ -5,9 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChannelSideBar from "../ChannelSideBar";
 import BookmarkMenuBar from "../BookmarkMenuBar";
-import BookmarkGraph from "../BookmarkGraph";
+import BookmarkGraphContainer from "../BookmarkGraphContainer";
 
-import { newTree } from "../BookmarkGraph/parser";
 import ConnectionImagesBox from "../ConnectionImagesBox";
 import { getConnections } from "../../api";
 
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TopMenu = function(props) {
   const classes = useStyles();
-  const [tree, setTree] = useState({});
+  // const [tree, setTree] = useState({});
   const [connections, setConnections] = useState({});
   const [enableImages, setEnableImages] = useState(false);
 
@@ -44,10 +43,10 @@ const TopMenu = function(props) {
   useEffect(
     () => {
       (async () => {
-        const newtree = await newTree();
+        // const newtree = await newTree();
         const connection = await getConnections();
-        console.log("TopMenu : ", newtree)
-        setTree(newtree);
+        // console.log("TopMenu : ", newtree)
+        // setTree(newtree);
         setConnections(connection.data);
         setEnableImages(true);
       })();
@@ -67,13 +66,11 @@ const TopMenu = function(props) {
         </Toolbar>
         <BookmarkMenuBar></BookmarkMenuBar>
       </AppBar>
-      <BookmarkGraph 
+      <BookmarkGraphContainer
         width={width}
         height={height}
-        margin={defaultMargin}
-        tree={tree}
-        setTree={setTree}
-      ></BookmarkGraph>
+      ></BookmarkGraphContainer>
+
       <ConnectionImagesBox
         location={props.location}
         connections={connections}
@@ -81,7 +78,8 @@ const TopMenu = function(props) {
         width={width}
         height={height}
         marginLeft={defaultMargin.left}
-        marginTop={defaultMargin.top}></ConnectionImagesBox>
+        marginTop={defaultMargin.top}>
+        </ConnectionImagesBox>
     </div>
   );
 }

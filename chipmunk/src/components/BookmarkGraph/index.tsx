@@ -4,7 +4,7 @@ import { Tree, hierarchy } from '@vx/hierarchy';
 import { LinkHorizontal } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
 import "./BookmarkGraph.scss";
-import { peach, pink, lightpurple, background } from "./constants";
+import { peach, pink, lightpurple } from "./constants";
 import { TreeNode, Node } from "./node";
 
 export type GraphProps = {
@@ -12,7 +12,7 @@ export type GraphProps = {
   width: number;
   height: number;
   margin: { top: number; right: number; bottom: number; left: number };
-  setTree?: Function
+  bookmarkActions?: any;
 };
 
 // MIT License
@@ -35,20 +35,6 @@ const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin }: Gr
   const data = useMemo(() => hierarchy(tree), [tree]);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
-
-  useEffect(
-    () => {
-      (async () => {
-        console.log("BookmarkGraph useEffect : ", tree);
-        await handleUpdateTree();
-        console.log("BookmarkGraph useEffect after update : ", tree);
-      })();
-    }
-  ,[]);
-
-  const handleUpdateTree = async () => {
-    //setTimeout(async function() { await insertDummyBookmark({}); }, 5000);
-  };
 
   return width < 10 ? null : (
     <svg id="bookmark-graph-svg" width={width} height={height} className="bookmark-graph">

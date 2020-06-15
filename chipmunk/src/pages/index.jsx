@@ -3,9 +3,15 @@ import Helmet from "react-helmet";
 import Layout from "../layout";
 import config from "../../data/SiteConfig";
 
+import { Provider } from 'react-redux';
+import configure from '../store';
+const store = configure({});
+
 class Index extends React.Component {
+
   render() {
     return (
+      <Provider store={store}>
       <Layout location={this.props.location} title="Home">
         <div className="index-container">
           <Helmet>
@@ -14,6 +20,7 @@ class Index extends React.Component {
           </Helmet>
         </div>
       </Layout>
+      </Provider>
     );
   }
 }
