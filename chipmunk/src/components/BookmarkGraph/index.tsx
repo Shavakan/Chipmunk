@@ -7,8 +7,6 @@ import "./BookmarkGraph.scss";
 import { peach, pink, lightpurple, background } from "./constants";
 import { TreeNode, Node } from "./node";
 
-import { insertDummyBookmark } from "../../api";
-
 export type GraphProps = {
   tree: TreeNode
   width: number;
@@ -49,7 +47,7 @@ const BookmarkGraph = function BookmarkGraph({ tree, width, height, margin }: Gr
   ,[]);
 
   const handleUpdateTree = async () => {
-    setTimeout(async function() { await insertDummyBookmark({}); }, 5000);
+    //setTimeout(async function() { await insertDummyBookmark({}); }, 5000);
   };
 
   return width < 10 ? null : (

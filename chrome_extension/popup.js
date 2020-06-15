@@ -3,11 +3,12 @@ const add_bookmark_button_id = '#add_bookmark';
 const title_input_id = '#title';
 const tags_id = '#tags';
 const star_ratings_id = '#star_ratings';
-const chipmunk_page_url = 'https://zoonoo.github.io/chipmunk';
+//const chipmunk_page_url = 'https://zoonoo.github.io/chipmunk';
+const chipmunk_page_url = 'localhost:8000';
 const cookie_name = 'chipmunk_cookie_name';
 
 // firebase variable
-var user_uuid = '';
+var user_uuid = 'dc4b3b02-a31a-11ea-bb37-0242ac130002';
 var channels_array = [];
 var tags_array = [];
 
@@ -22,39 +23,12 @@ function onLoad() {
     init_title();
     init_star_ratings();
     init_add_bookmark();
-    init_cookie(function () {
-        refresh_channels();
-    });
 
     set_star_ratings(3);
-}
-
-function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
+    refresh_channels();
 }
 
 window.onload = onLoad;
-
-function init_cookie(callback) {
-    chrome.cookies.get({ url: chipmunk_page_url, name: cookie_name },
-        function (cookie) {
-            if (cookie) {
-                // todo: cookie
-                //user_uuid = cookie.value;
-                user_uuid = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
-            }
-            else {
-                // todo: cookie
-                //user_uuid = uuidv4();
-                user_uuid = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
-                chrome.cookies.set({ url: chipmunk_page_url, name: cookie_name, value: user_uuid })
-            }
-
-            callback();
-        });
-}
 
 function init_firebase() {
     var firebaseConfig = {
