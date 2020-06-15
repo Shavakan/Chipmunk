@@ -14,7 +14,7 @@ var tags_array = [];
 
 // user typed variable
 var page_url = '';
-var channel = 'channels';
+var channel = 'Docker';
 var star_ratings = 0;
 
 function onLoad() {
