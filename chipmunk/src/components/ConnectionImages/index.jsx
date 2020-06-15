@@ -3,7 +3,7 @@ import ConnectionImage from "../ConnectionImage";
 
 const ConnectionImages = function ConnectionImages(props) {
   var [images, setImages] = useState([]);
-  var [connectionUUid, setConnectionUUid] = useState("");
+  var [connectionData, setConnectionData] = useState([]);
 
   useEffect(() => {
       var nodes = [];
@@ -17,6 +17,7 @@ const ConnectionImages = function ConnectionImages(props) {
       }
 
       var newImages = [];
+      var newData = [];
       var pathArray = document.getElementById('bookmark-graph-svg').getElementsByTagName('path');
       for (var i = 0; i < pathArray.length; i ++) {
         var dAttribute = pathArray[i].getAttribute('d').split(/(?=[LMC])/);
@@ -39,7 +40,7 @@ const ConnectionImages = function ConnectionImages(props) {
         for (var key in props.connections) {
           if (parentNodeId == props.connections[key]['parent_uuid'] && childNodeId == props.connections[key]['child_uuid']) {
             type = props.connections[key]['type'];
-            setConnectionUUid(props.connections[key]['uuid']);
+            newData.push(props.connections[key]);
             break;
           }
         }
@@ -52,6 +53,7 @@ const ConnectionImages = function ConnectionImages(props) {
       }
 
       setImages(newImages);
+      setConnectionData(newData);
   }, []);
 
   return (
@@ -59,7 +61,7 @@ const ConnectionImages = function ConnectionImages(props) {
       {images.map(image => (
         <ConnectionImage
           location={props.location}
-          connectionUUid={connectionUUid}
+          connectionData={connectionData[image["id"]]}
           key={image.id}
           top={image.top}
           left={image.left}
