@@ -9,14 +9,14 @@ const ConnectionImagesBox  = function ConnectionImagesBox(props) {
   const margin = marginTop + 'px 0px 0px ' + marginLeft + 'px';
   const divStyle = {
     position: 'relative',
-    width: props.width,
-    height: props.height,
+    width: 10,
+    height: 10,
     margin: margin,
   };
 
   return (
       <div id="connection-images-box" style={divStyle}>
-          {props.enableImages && <ConnectionImages location={props.location} connections={props.connections}></ConnectionImages>}
+          {props.enableImages && <ConnectionImages location={props.location} tree={props.tree} connections={props.connections}></ConnectionImages>}
       </div>
   );
 }

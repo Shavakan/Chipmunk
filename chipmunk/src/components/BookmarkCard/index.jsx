@@ -16,6 +16,7 @@ import "./BookmarkCard.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: "absolute",
     maxWidth: 350,
     maxHeight: 700,
   },

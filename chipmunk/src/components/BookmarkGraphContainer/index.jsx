@@ -6,7 +6,6 @@ import * as connectionActions from '../../store/reducers/connections';
 import BookmarkGraph from '../BookmarkGraph';
 import { parseBookmarks } from './parser';
 import ConnectionImagesBox from "../ConnectionImagesBox";
-import BookmarkPopupContainer from "../BookmarkPopupContainer";
 
 const BookmarkGraphContainer = ({ 
     tree,
@@ -24,6 +23,7 @@ const BookmarkGraphContainer = ({
     useEffect(
         () => {
             (async () => {
+                console.log("set enable images");
                 setEnableImages(true);
             })();
         }, [tree]
@@ -43,6 +43,7 @@ const BookmarkGraphContainer = ({
         <div>
             <BookmarkGraph
                 tree={tree}
+                bookmarks={bookmarks}
                 width={width}
                 height={height}
                 margin={margin}
@@ -50,6 +51,7 @@ const BookmarkGraphContainer = ({
             </BookmarkGraph>
 
             <ConnectionImagesBox
+                tree={tree}
                 location={location}
                 connections={connections}
                 enableImages={enableImages}
@@ -58,15 +60,6 @@ const BookmarkGraphContainer = ({
                 marginLeft={margin.left}
                 marginTop={margin.top}>
             </ConnectionImagesBox>
-
-            <BookmarkPopupContainer
-              width={width}
-              height={height}
-              margin={margin}
-              tree={tree}
-              bookmarks={bookmarks}
-            >
-            </BookmarkPopupContainer>
         </div>
         
     );
@@ -77,11 +70,16 @@ const BookmarkGraphContainer = ({
 function mapStateToProps(state) {
     const bookmarks = state.bookmarks.get('bookmarks') || [];
     const connections = state.connections.get('connections') || [];
-    console.log("BookmarkGraphContainer mapStateToProps : ", bookmarks, connections);
+
+    const width = 1200;
+    const height = 1200*0.6;
+
     return { 
         tree: parseBookmarks(bookmarks, connections), 
         connections: connections,
-        bookmarks: bookmarks
+        bookmarks: bookmarks,
+        width: width,
+        height: height,
     };
 }
 

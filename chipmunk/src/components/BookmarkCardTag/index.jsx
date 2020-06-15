@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
     // 시간이 좀 걸림
     if (chipData && chipData.length >=0 ) {
-      console.log(chipData)
+      // console.log(chipData)
       return (
         <Paper component="ul" className={classes.root} elevation={0}>
           {chipData.map((data) => {

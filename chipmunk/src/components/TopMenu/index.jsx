@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 const TopMenu = function(props) {
   const classes = useStyles();
-  const width = 600;
-  const height = 600*0.6;
-
   return (
     <div>
       <AppBar position="static">
@@ -44,8 +41,6 @@ const TopMenu = function(props) {
         <BookmarkMenuBar></BookmarkMenuBar>
       </AppBar>
       <BookmarkGraphContainer
-        width={width}
-        height={height}
         location={props.location}
         margin={defaultMargin}
       ></BookmarkGraphContainer>

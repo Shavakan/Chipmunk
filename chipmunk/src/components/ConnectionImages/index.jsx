@@ -18,6 +18,7 @@ const ConnectionImages = function ConnectionImages(props) {
 
       var newImages = [];
       var pathArray = document.getElementById('bookmark-graph-svg').getElementsByTagName('path');
+      console.log("pathArray : ", pathArray);
       for (var i = 0; i < pathArray.length; i ++) {
         var dAttribute = pathArray[i].getAttribute('d').split(/(?=[LMC])/);
         var firstAttribute = dAttribute[0].substring(1).split(',');
@@ -52,7 +53,7 @@ const ConnectionImages = function ConnectionImages(props) {
       }
 
       setImages(newImages);
-  }, []);
+  }, [props.tree]);
 
   return (
     <>
