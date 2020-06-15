@@ -47,19 +47,19 @@
 					"vnad-ewkc-xmkl-ewkm-adnx": {
 						"parent_uuid": "kjlk-adas-bjkj-jkhk-sajs",
 						"child_uuid": "adfs-dsfa-sdfa-sfds-fadd",
-						"type": ":thumbs-up:",
+						"type": "arrow_right.png",
 						"uuid": "vnad-ewkc-xmkl-ewkm-adnx"
 					},
 					"nqps-ewkc-xmkl-ewkm-adnx": {
 						"parent_uuid": "kjlk-adas-bjkj-jkhk-sajs",
 						"child_uuid": "wqev-mewd-axmw-qwdx-asxd",
-						"type": ":thumbs-up:",
+						"type": "arrow_right.png",
 						"uuid": "nqps-ewkc-xmkl-ewkm-adnx"
 					},
 					"qznx-ewkc-xmkl-ewkm-adnx": {
 						"parent_uuid": "adfs-dsfa-sdfa-sfds-fadd",
 						"child_uuid": "qweu-mewd-axmw-qwdx-asxd",
-						"type": ":thumbs-up:",
+						"type": "arrow_right_left.png",
 						"uuid": "qznx-ewkc-xmkl-ewkm-adnx"
 					}
 				},

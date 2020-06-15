@@ -16,7 +16,7 @@ const ConnectionImagesBox  = function ConnectionImagesBox(props) {
 
   return (
       <div style={divStyle}>
-          {props.enableImages && <ConnectionImages connections={props.connections}></ConnectionImages>}
+          {props.enableImages && <ConnectionImages location={props.location} connections={props.connections}></ConnectionImages>}
       </div>
   );
 }

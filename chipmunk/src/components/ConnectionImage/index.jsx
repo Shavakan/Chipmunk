@@ -11,21 +11,17 @@ const ConnectionImage = function ConnectionImage(props) {
       height: '16px',
   }
 
-  var defaultSrc = "";
+  var path = props.location["origin"];
+  var defaultType = props.src;
+  var defaultSrc = `${path}/logos/${defaultType}`;
   var otherSrc = "";
-  var defaultType = "";
   var otherType = "";
-  if (props.src == 'thumbs-up.png') {
-    defaultSrc = "https://zoonoo.github.io/chipmunk/logos/thumbs-up.png";
-    otherSrc = "https://zoonoo.github.io/chipmunk/logos/no.jpg";
-    defaultType = ":thumbs-up:";
-    otherType = ":no:";
+  if (defaultType == "arrow_right.png") {
+    otherType = "arrow_right_left.png";
   } else {
-    otherSrc = "https://zoonoo.github.io/chipmunk/logos/thumbs-up.png";
-    defaultSrc = "https://zoonoo.github.io/chipmunk/logos/no.jpg";
-    defaultType = ":no:";
-    otherType = ":thumbs-up:";
+    otherType = "arrow_right.png";
   }
+  otherSrc = `${path}/logos/${otherType}`;
   var [src, setSrc] = useState(defaultSrc);
 
   // todo: implement click for changing type

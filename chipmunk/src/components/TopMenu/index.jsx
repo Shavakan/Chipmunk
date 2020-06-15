@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 // export type TopMenuProps = {
 // }
 
-const TopMenu = function() {
+const TopMenu = function(props) {
   const classes = useStyles();
   const [tree, setTree] = useState({});
   const [connections, setConnections] = useState({});
@@ -75,6 +75,7 @@ const TopMenu = function() {
         setTree={setTree}
       ></BookmarkGraph>
       <ConnectionImagesBox
+        location={props.location}
         connections={connections}
         enableImages={enableImages}
         width={width}

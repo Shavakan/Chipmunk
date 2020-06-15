@@ -10,7 +10,7 @@ export default class MainLayout extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <TopMenu>
+      <TopMenu location={this.props.location}>
         <div>
           <Helmet>
             <meta name="description" content={config.siteDescription} />

@@ -35,12 +35,10 @@ const ConnectionImages = function ConnectionImages(props) {
 
         var parentNodeId = result[0].id;
         var childNodeId = result2[0].id;
-        var type = 'thumbs-up.png';
+        var type = 'arrow_right.png';
         for (var key in props.connections) {
           if (parentNodeId == props.connections[key]['parent_uuid'] && childNodeId == props.connections[key]['child_uuid']) {
-            if (props.connections[key]['type'] == ':no:') {
-              type = 'no.jpg';
-            }
+            type = props.connections[key]['type'];
             setConnectionUUid(props.connections[key]['uuid']);
             break;
           }
@@ -60,6 +58,7 @@ const ConnectionImages = function ConnectionImages(props) {
     <>
       {images.map(image => (
         <ConnectionImage
+          location={props.location}
           connectionUUid={connectionUUid}
           key={image.id}
           top={image.top}

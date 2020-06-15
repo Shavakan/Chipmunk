@@ -266,7 +266,7 @@ function add_connection_request(parent_uuid, child_uuid) {
     var connectionData = {
         child_uuid: child_uuid,
         parent_uuid: parent_uuid,
-        type: ":thumbs-up:",
+        type: "arrow_right.png",
         uuid: newKey,
     };
     updates[newKey] = connectionData;
