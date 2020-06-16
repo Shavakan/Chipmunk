@@ -11,22 +11,19 @@ import StarRateIcon from '@material-ui/icons/StarRate';
 import BookmarkCardTag from "../BookmarkCardTag";
 import BookmarkPopup from "../BookmarkPopup";
 import { getBookmark, getComments } from "../../api";
-import "./BookmarkCard.scss";
 
+const width = 250;
+const height = 50;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "absolute",
-    maxWidth: 350,
-    maxHeight: 700,
+    width: width,
+    height: height,
   },
   tagContainer: {
     flex: 1,
     paddingLeft: theme.spacing(1),
-  },
-  info: {
-    size: 'medium',
-    paddingRight: 0,
   },
   star: {
     paddingLeft: 1,
@@ -34,15 +31,10 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 1,
   },
   rate: {
-    fontSize: 17,
-    paddingTop: 10,
+    fontSize: 14,
+    paddingTop: 8,
     paddingLeft: 0,
-    paddingRight: 15,
-  },
-  comments: {
-    paddingLeft: 10,
-    paddingRight: 165,
-    fontSize: 12,
+    paddingRight: 10,
   },
 }));
 
@@ -80,17 +72,10 @@ const BookmarkCard = function BookmarkCard({bookmark }) {
             <Box className={classes.rate}>★ {bookmark.rating}</Box>
           </div>
         }
+        titleTypographyProps={{variant:'body2' }}
         title={bookmark.title}
       />
-      <div className={classes.tagContainer}>
-        <BookmarkCardTag tags={bookmark.tags}></BookmarkCardTag>
-      
-      </div>
-      <CardActions disableSpacing>
-          <Box className={classes.comments} flexShrink={0}>
-             {comments.length} Comments
-          </Box>
-          <Box flexShrink={0}><BookmarkPopup className={classes.info} bookmark={bookmark} bookmarkId={bookmark.uuid} comments={comments}></BookmarkPopup></Box>      </CardActions>
+      <BookmarkPopup bookmark={bookmark} bookmarkId={bookmark.uuid} comments={comments} width={width} height={height}></BookmarkPopup>
     </Card>
   );
 }

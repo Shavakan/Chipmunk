@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
               </li>
             );
           })}
-  
         </Paper>
       );
     } else {

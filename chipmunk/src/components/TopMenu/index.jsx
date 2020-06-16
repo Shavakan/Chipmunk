@@ -7,7 +7,7 @@ import ChannelSideBar from "../ChannelSideBar";
 import BookmarkMenuBar from "../BookmarkMenuBar";
 import BookmarkGraphContainer from "../BookmarkGraphContainer";
 
-const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
+const defaultMargin = { top: -100, left: 200, right: 80, bottom: 10 };
 
 const useStyles = makeStyles((theme) => ({
   root: {

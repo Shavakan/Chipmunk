@@ -3,6 +3,10 @@ import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { Group } from '@vx/group';
 import BookmarkCard from "../BookmarkCard";
 
+// 5 : for padding
+const width = 250 + 5;
+const height = 50 + 5;
+
 export interface TreeNode {
     uuid: string;
     title: string;
@@ -21,7 +25,7 @@ export interface TreeNode {
   
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+        <foreignObject className="card" x={-width/2} y={-height/2} width={width} height={height} >
           <BookmarkCard bookmark={node.data}></BookmarkCard>
         </foreignObject>
       </Group>
@@ -31,7 +35,7 @@ export interface TreeNode {
   function RootNode({ node }: { node: HierarchyNode }) {
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+        <foreignObject className="card" x={-width/2} y={-height/2} width={width} height={height} >
           <BookmarkCard bookmark={node.data}></BookmarkCard>
         </foreignObject>
       </Group>
@@ -39,12 +43,9 @@ export interface TreeNode {
   }
   
   function ParentNode({ node }: { node: HierarchyNode }) {
-    const width = 40;
-    const height = 20;
-  
     return (
       <Group id={node.data.uuid} top={node.x} left={node.y}>
-        <foreignObject className="card" x="0" y="0" width="525" height="300" >
+        <foreignObject className="card" x={-width/2} y={-height/2} width={width} height={height} >
           <BookmarkCard bookmark={node.data}></BookmarkCard>
         </foreignObject>
       </Group>
