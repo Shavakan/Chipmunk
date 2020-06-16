@@ -16,7 +16,8 @@ import { getTags, getBookmarks } from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "grid"
+    display: "grid",
+    marginTop: "auto",
   },
   formControl: {
     margin: theme.spacing(1),
