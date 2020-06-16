@@ -6,7 +6,6 @@ import CallMadeIcon from '@material-ui/icons/CallMade';
 import SearchBox from "../SearchBox";
 import MultiSelectChip from "../MultiSelectChip";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -16,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#FCE4D8",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
+    height: 88,
   },
   button: {
     margin: theme.spacing(1),
@@ -26,17 +26,17 @@ export default function TopMenu() {
     const classes = useStyles();
     
     return (
-        <Toolbar className={classes.toolbar}>
-          <SearchBox></SearchBox>
-          <MultiSelectChip></MultiSelectChip>
-          <Button
-            variant="contained"
-            color="default"
-            className={classes.button}
-            startIcon={<CallMadeIcon />}
-          >
-            Add An Arrow
-          </Button>
-        </Toolbar>
+      <Toolbar className={classes.toolbar}>
+        <SearchBox></SearchBox>
+        <MultiSelectChip></MultiSelectChip>
+        <Button
+          variant="contained"
+          color="default"
+          className={classes.button}
+          startIcon={<CallMadeIcon />}
+        >
+          Add An Arrow
+        </Button>
+      </Toolbar>
     );
 }

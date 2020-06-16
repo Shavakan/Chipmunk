@@ -24,3 +24,6 @@ export const getComments = async () => await axios.get(`${URL}/comments.json`);
 export const setConnectionType = async (uuid: string, data: string) => {
     await axios.patch(`${URL}/${default_user_id}/${channel_id}/connections/${uuid}.json`, data);
 }
+
+// https://chipmunk-89590.firebaseio.com/users/dc4b3b02-a31a-11ea-bb37-0242ac130002/Docker/tags.json
+export const getTags = async (user_id = default_user_id) => await axios.get(`${URL}/${user_id}/${channel_id}/tags.json`)

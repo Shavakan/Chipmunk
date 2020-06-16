@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -6,7 +6,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import "./MultiSelectChip.scss";
+import BookmarkCard from "../BookmarkCard";
+import SearchResultItemsList from "../SearchResultItemsList";
+import { getTags, getBookmarks } from '../../api';
+import { bookmarks } from '../../store/reducers';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -37,15 +44,6 @@ const MenuProps = {
   },
 };
 
-// TODO(changwon): Get tags from Firebase
-const tags = [
-  "Docker",
-  "React",
-  "AngularJS",
-  "VueJS",
-  "Starter"
-];
-
 function getStyles(tag, tagName, theme) {
   return {
     fontWeight:
@@ -55,14 +53,45 @@ function getStyles(tag, tagName, theme) {
   };
 }
 
-export default function MultiSelectChip() {
+export default function MultiSelectChip(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [tagName, setTagName] = React.useState([]);
+  const [tagName, setTagName] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
+  const [filteredBookmarks, setFilteredBookmarks] = useState([]);
 
   const handleChange = (event) => {
     setTagName(event.target.value);
+    setFilteredBookmarks(filterBookmarks(event.target.value));
   };
+
+  const filterBookmarks = (currTags) => {
+    if (currTags.length === 0) return [];
+
+    let lst = [];
+    let keys = Object.keys(bookmarks).filter((k) => {
+      for (let i=0; i<currTags.length; i++) {
+        if (!bookmarks[k].tags.includes(currTags[i])) {
+          return false;
+        }
+      }
+      return true;
+    });
+    keys.map((k) => lst.push(bookmarks[k]))
+    return lst;
+  }
+
+
+  useEffect(
+    () => {
+      (async () => {
+        const tags = await getTags();
+        const bookmarks  = await getBookmarks();
+        setTags(tags.data);
+        setBookmarks(bookmarks.data);
+      })();
+    }, []);
 
   return (
     <div>
@@ -86,11 +115,22 @@ export default function MultiSelectChip() {
         >
           {tags.map((tag) => (
             <MenuItem key={tag} value={tag} style={getStyles(tag, tagName, theme)}>
-              {tag}
+          {tag}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
+      <Grid item xs={12} md={6}>
+        <List>
+          {filteredBookmarks.map((bookmark) => {
+            return (
+            <ListItem key={bookmark.name}>
+              <BookmarkCard bookmark={bookmark}></BookmarkCard>
+            </ListItem>);
+          })}
+        </List>
+      </Grid>
+      <SearchResultItemsList></SearchResultItemsList>
     </div>
   );
 }
