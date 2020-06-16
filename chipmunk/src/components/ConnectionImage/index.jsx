@@ -12,7 +12,7 @@ const ConnectionImage = function ConnectionImage(props) {
       height: `${size}px`,
   }
 
-  var path = props.location["origin"];
+  var path = "https://zoonoo.github.io/chipmunk";
   var defaultType = props.src;
   var defaultSrc = `${path}/logos/${defaultType}`;
   var otherType = "arrow_right.png";
