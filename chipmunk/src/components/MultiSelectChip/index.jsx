@@ -13,7 +13,6 @@ import "./MultiSelectChip.scss";
 import BookmarkCard from "../BookmarkCard";
 import SearchResultItemsList from "../SearchResultItemsList";
 import { getTags, getBookmarks } from '../../api';
-import { bookmarks } from '../../store/reducers';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -130,7 +129,7 @@ export default function MultiSelectChip(props) {
           })}
         </List>
       </Grid>
-      <SearchResultItemsList></SearchResultItemsList>
+      {/* <SearchResultItemsList></SearchResultItemsList> */}
     </div>
   );
 }
