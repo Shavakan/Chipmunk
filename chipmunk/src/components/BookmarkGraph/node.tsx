@@ -5,7 +5,7 @@ import BookmarkCard from "../BookmarkCard";
 
 // 5 : for padding
 const width = 250 + 5;
-const height = 50 + 5;
+const height = 100 + 5;
 
 export interface TreeNode {
     uuid: string;

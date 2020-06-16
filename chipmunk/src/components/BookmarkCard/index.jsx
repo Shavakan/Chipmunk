@@ -13,7 +13,7 @@ import BookmarkPopup from "../BookmarkPopup";
 import { getBookmark, getComments } from "../../api";
 
 const width = 250;
-const height = 50;
+const height = 100;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +71,9 @@ const BookmarkCard = function BookmarkCard({bookmark }) {
         titleTypographyProps={{variant:'body2' }}
         title={bookmark.title}
       />
+      <div className={classes.tagContainer}>	
+        <BookmarkCardTag tags={bookmark.tags}></BookmarkCardTag>
+      </div>
       <BookmarkPopup bookmark={bookmark} bookmarkId={bookmark.uuid} comments={comments} width={width} height={height}></BookmarkPopup>
     </Card>
   );
