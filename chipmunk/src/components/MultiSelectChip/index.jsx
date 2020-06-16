@@ -9,12 +9,15 @@ import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 import "./MultiSelectChip.scss";
 import BookmarkCard from "../BookmarkCard";
-import SearchResultItemsList from "../SearchResultItemsList";
 import { getTags, getBookmarks } from '../../api';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "grid"
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -29,6 +32,19 @@ const useStyles = makeStyles((theme) => ({
   },
   select: {
     padding: "0 0 2px",
+  },
+  grid: {
+    backgroundColor: "lightgray",
+    zIndex: 150,
+  },
+  list: {
+    paddingBottom: 1,
+  },
+  listItem: {
+    minHeight: 100,
+    minWidth: 250,
+    padding: 0,
+    margin: 5,
   },
 }));
 
@@ -93,7 +109,7 @@ export default function MultiSelectChip(props) {
     }, []);
 
   return (
-    <div>
+    <div className={classes.root}>
       <FormControl className={classes.formControl}>
         <InputLabel id="mutiple-chip-label">Filter…</InputLabel>
         <Select
@@ -119,17 +135,20 @@ export default function MultiSelectChip(props) {
           ))}
         </Select>
       </FormControl>
-      <Grid item xs={12} md={6}>
-        <List>
-          {filteredBookmarks.map((bookmark) => {
-            return (
-            <ListItem key={bookmark.name}>
-              <BookmarkCard bookmark={bookmark}></BookmarkCard>
-            </ListItem>);
-          })}
-        </List>
+      <Grid item className={classes.grid}>
+        {filteredBookmarks.map((bookmark) => {
+          return (
+            <div>
+              <Divider />
+              <List disablePadding className={classes.list}>
+                <ListItem key={bookmark.name} className={classes.listItem}>
+                  <BookmarkCard bookmark={bookmark}></BookmarkCard>
+                </ListItem>
+              </List>
+            </div>
+          );
+        })}
       </Grid>
-      {/* <SearchResultItemsList></SearchResultItemsList> */}
     </div>
   );
 }
