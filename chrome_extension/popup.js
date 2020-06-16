@@ -3,8 +3,7 @@ const add_bookmark_button_id = '#add_bookmark';
 const title_input_id = '#title';
 const tags_id = '#tags';
 const star_ratings_id = '#star_ratings';
-//const chipmunk_page_url = 'https://zoonoo.github.io/chipmunk';
-const chipmunk_page_url = 'localhost:8000';
+const chipmunk_page_url = 'https://zoonoo.github.io/chipmunk';
 const cookie_name = 'chipmunk_cookie_name';
 
 // firebase variable
