@@ -71,11 +71,23 @@
 			}
 		},
 		"comments": {
+			"358fc73b-28d7-4f87-b589-bb986e52f42e": {
+				"text": "Helpful bookmark for starters!",
+				"url": "https://docker-curriculum.com/#hello-world",
+				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
+				"uuid": "358fc73b-28d7-4f87-b589-bb986e52f42e"
+			},
+			"d7650148-2443-4f14-a6f0-f027a10baa00": {
+				"text": "This bookmark is really helpful!",
+				"url": "https://docker-curriculum.com/#setting-up-your-computer",
+				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
+				"uuid": "d7650148-2443-4f14-a6f0-f027a10baa00"
+			},
 			"e7c603e9-d919-4639-acdf-26504e9f27ae": {
-				"uuid": "e7c603e9-d919-4639-acdf-26504e9f27ae",
 				"text": "This is the best bookmark!",
 				"url": "https://docker-curriculum.com/#hello-world",
-				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002"
+				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
+				"uuid": "e7c603e9-d919-4639-acdf-26504e9f27ae"
 			}
 		}
 	}
