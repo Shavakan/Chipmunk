@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TopMenu = function(props) {
+  var path = "https://zoonoo.github.io/chipmunk/logos/chipmunk.png";
+
   const classes = useStyles();
   return (
     <div>
@@ -36,6 +38,7 @@ const TopMenu = function(props) {
           <Typography variant="h3" color="inherit" className={classes.title}>
             My Cheek Pouch
           </Typography>
+          <img src={path}></img>
           <ChannelSideBar></ChannelSideBar>
         </Toolbar>
         <BookmarkMenuBar></BookmarkMenuBar>
