@@ -70,11 +70,11 @@
 				]
 			}
 		},
-		"commments": {
+		"comments": {
 			"e7c603e9-d919-4639-acdf-26504e9f27ae": {
 				"uuid": "e7c603e9-d919-4639-acdf-26504e9f27ae",
-				"text": "This is the best club!",
-				"url": "https://www.sparcs.org/",
+				"text": "This is the best bookmark!",
+				"url": "https://docker-curriculum.com/#hello-world",
 				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002"
 			}
 		}

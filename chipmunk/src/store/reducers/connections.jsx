@@ -19,7 +19,6 @@ export default handleActions({
     type: GET_CONNECTIONS,
     onSuccess: (state, action) => {
       const { data } = action.payload;
-      console.log("store/reducers/connections GET_CONNECTIONS", data);
       return state.set('connections', Object.values(data));
     }
   })

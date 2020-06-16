@@ -41,17 +41,13 @@ const useStyles = makeStyles((theme) => ({
 
 const BookmarkCard = function BookmarkCard({bookmark }) {
   const classes = useStyles();
-  // const [bookmark, setBookmark] = React.useState('');
   const [comments, setComments] = React.useState('');
 
-  const getBookmarkData = async () => {
-    // const data = (await getBookmark(props.bookmarkId)).data;
-    // setBookmark(data);
-
+  const getCommentData = async () => {
     const comments = Object.values((await getComments()).data);
     const commentsData = [];
     comments.forEach(function(comment) {
-      if (comment.url === data.url) {
+      if (comment.url === bookmark.url) {
         commentsData.push(comment);
       }
     })
@@ -59,8 +55,8 @@ const BookmarkCard = function BookmarkCard({bookmark }) {
   };
 
   React.useEffect(() => {
-    if (!bookmark) {
-      getBookmarkData();
+    if (bookmark) {
+      getCommentData();
     }
   }, []);
 

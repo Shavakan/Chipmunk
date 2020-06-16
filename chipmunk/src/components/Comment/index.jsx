@@ -28,15 +28,13 @@ export default function AlignItemsList(props) {
     }
   })
 
-
   // 시간이 좀 걸림
   if (commentData && commentData.length >=0 ) {
-    console.log(commentData)
     return (
       <List className={classes.root}>
         {commentData.map((data) => {
           return (
-            <div>
+            <div key={data}>
             <ListItem alignItems="flex-start">
             <ListItemAvatar>
                 <Avatar alt="Someone" src="/static/images/avatar/1.jpg" />
@@ -62,7 +60,6 @@ export default function AlignItemsList(props) {
             </div>
           );
         })}
-
       </List>
     );
   } else {

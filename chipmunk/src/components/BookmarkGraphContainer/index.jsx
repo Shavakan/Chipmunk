@@ -23,7 +23,6 @@ const BookmarkGraphContainer = ({
     useEffect(
         () => {
             (async () => {
-                console.log("set enable images");
                 setEnableImages(true);
             })();
         }, [tree]

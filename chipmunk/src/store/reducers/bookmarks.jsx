@@ -19,7 +19,6 @@ export default handleActions({
     type: GET_BOOKMARKS,
     onSuccess: (state, action) => {
       const { data } = action.payload;
-      console.log("store/reducers/bookmarks GET_BOOKMARKS", data);
       return state.set('bookmarks', Object.values(data));
     }
   })

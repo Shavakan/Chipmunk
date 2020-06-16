@@ -31,7 +31,6 @@ const ConnectionImageMenu = function ConnectionImageMenu(props) {
     var newData = props.connectionData;
     newData["type"] = type;
 
-    console.log(newData, newData["uuid"])
     setConnectionType(newData["uuid"], newData)
   }
 
