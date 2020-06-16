@@ -25,4 +25,3 @@ To build, execute `npm run build`.
 To build with prefix path option, execute `npm run build:pp`.
 
 Main page is at `/`
-Bookmark cards with popups can be seen at `/test`
