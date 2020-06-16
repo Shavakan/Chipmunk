@@ -98,7 +98,6 @@ export default function MultiSelectChip(props) {
     return lst;
   }
 
-
   useEffect(
     () => {
       (async () => {

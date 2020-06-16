@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import SearchResultItemsList from "../SearchResultItemsList";
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import BookmarkCard from "../BookmarkCard";
+import { getBookmarks } from '../../api';
 
 const useStyles = makeStyles((theme) => ({
-  searchArea: {
-    // marginTop: 415,
+  root: {
+    display: "grid",
+    marginTop: "auto",
+    paddingTop: 15,
   },
   search: {
     position: 'relative',
@@ -49,13 +56,64 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  searchGrid: {
+    backgroundColor: "lightgray",
+    zIndex: 150,
+    marginLeft: 8,
+  },
+  list: {
+    paddingBottom: 1,
+  },
+  listItem: {
+    minHeight: 100,
+    minWidth: 250,
+    padding: 0,
+    margin: 5,
+  },
 }));
 
 export default function SearchBox() {
   const classes = useStyles();
+  const [bookmarks, setBookmarks] = useState([]);
+  const [filteredBookmarks, setFilteredBookmarks] = useState([]);
+
+  const filterBookmarks = (keyword) => {
+    console.log(keyword);
+    if (keyword.length === 0) return [];
+
+    let lst = [];
+    let keys = Object.keys(bookmarks).filter((k) => {
+      console.log(bookmarks[k]);
+      if (bookmarks[k].title.toLowerCase().includes(keyword.toLowerCase())) { 
+        return true;
+      }
+
+    //   for (let i=0; i<currTags.length; i++) {
+    //     if (!bookmarks[k].tags.includes(currTags[i])) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    });
+    keys.map((k) => lst.push(bookmarks[k]))
+    console.log(lst);
+    return lst;
+  }
+
+  const handleChange = (event) => {
+    setFilteredBookmarks(filterBookmarks(event.target.value));
+  }
+
+  useEffect(
+    () => {
+      (async () => {
+        const bookmarks  = await getBookmarks();
+        setBookmarks(bookmarks.data);
+      })();
+    }, []);
 
   return (
-    <div className={classes.searchArea}>
+    <div className={classes.root}>
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
@@ -67,9 +125,23 @@ export default function SearchBox() {
             input: classes.inputInput,
           }}
           inputProps={{ 'aria-label': 'search' }}
+          onChange={handleChange}
         />
       </div>
-      {/* <SearchResultItemsList></SearchResultItemsList> */}
+      <Grid item className={classes.searchGrid}>
+        {filteredBookmarks.map((bookmark) => {
+          return (
+            <div>
+              <Divider />
+              <List disablePadding className={classes.list}>
+                <ListItem key={bookmark.name} className={classes.listItem}>
+                  <BookmarkCard bookmark={bookmark}></BookmarkCard>
+                </ListItem>
+              </List>
+            </div>
+          );
+        })}
+      </Grid>
     </div>
   );
 }
