@@ -56,7 +56,7 @@ export default function BookmarkPopup(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">{props.bookmark.title}</h2>
+      <a href={props.bookmark.url} target="_blank"><h2 id="simple-modal-title">{props.bookmark.title}</h2></a>
       <StarRating rating={props.bookmark.rating} bookmarkId={props.bookmarkId}></StarRating>
       <Comment comments={props.comments}></Comment>
       <CommentInput></CommentInput>
