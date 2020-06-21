@@ -53,7 +53,7 @@ export default function ChannelSideBar() {
         <Divider />
         <List>
         {/* TODO(changwon): Make Docker look like selected */}
-        {['Docker', 'AWS', 'VueJS', 'AngularJS'].map((text, index) => (
+        {['Front-end', 'Back-end', 'Algorithm', 'AI'].map((text, index) => (
             <ListItem button key={text}>
             <ListItemText primary={text} />
             </ListItem>

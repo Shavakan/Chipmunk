@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const URL = "https://chipmunk-89590.firebaseio.com/users";
 const default_user_id = "dc4b3b02-a31a-11ea-bb37-0242ac130002";
-const channel_id = "Docker";
+const channel_id = "Front-end";
 
 // https://chipmunk-89590.firebaseio.com/users/dc4b3b02-a31a-11ea-bb37-0242ac130002/Docker/bookmarks.json
 export const getBookmarks = async (user_id = default_user_id) => await axios.get(`${URL}/${user_id}/${channel_id}/bookmarks.json`);

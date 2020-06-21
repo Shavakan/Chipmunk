@@ -1,45 +1,54 @@
 {
 	"users": {
 		"dc4b3b02-a31a-11ea-bb37-0242ac130002": {
-			"Docker": {
+			"Front-end": {
 				"name": "sparcs101",
 				"bookmarks": {
 					"kjlk-adas-bjkj-jkhk-sajs": {
 						"uuid": "kjlk-adas-bjkj-jkhk-sajs",
-						"url": "https://docker-curriculum.com/",
+						"url": "https://www.codecademy.com/catalog/language/html-css",
 						"rating": 5,
-						"title": "A Docker Tutorial for Beginners",
+						"title": "HTML & CSS Courses & Tutorials",
 						"tags": [
-							"Starter"
+							"Tutorial"
 						]
 					},
 					"adfs-dsfa-sdfa-sfds-fadd": {
 						"uuid": "adfs-dsfa-sdfa-sfds-fadd",
-						"url": "https://docker-curriculum.com/#setting-up-your-computer",
+						"url": "https://www.w3schools.com/js/",
 						"rating": 3,
-						"title": "Docker Getting Started",
+						"title": "JavaScript Tutorial",
 						"tags": [
-							"Bash"
+							"Tutorial",
+							"Language"
 						]
 					},
 					"wqev-mewd-axmw-qwdx-asxd": {
 						"uuid": "wqev-mewd-axmw-qwdx-asxd",
-						"url": "https://docker-curriculum.com/#hello-world",
+						"url": "https://www.w3schools.com/react/",
 						"rating": 4,
-						"title": "Docker Hello World",
+						"title": "React Tutorial",
 						"tags": [
-							"Bash",
-							"Shell"
+							"Tutorial",
+							"Library"
 						]
 					},
 					"qweu-mewd-axmw-qwdx-asxd": {
 						"uuid": "qweu-mewd-axmw-qwdx-asxd",
-						"url": "https://docs.docker.com/engine/reference/commandline/exec/",
+						"url": "https://medium.com/@infinijith/javascript-vs-typescript-which-is-better-2020-updated-871866a3c68c",
 						"rating": 2,
-						"title": "Docker Exec",
+						"title": "JavaScript VS TypeScript",
 						"tags": [
-							"Bash",
-							"Shell"
+							"Language"
+						]
+					},
+					"zqiu-mewd-axmw-qwdx-asxd": {
+						"uuid": "zqiu-mewd-axmw-qwdx-asxd",
+						"url": "https://hackr.io/blog/web-development-ide",
+						"rating": 4,
+						"title": "Best Web Development IDE",
+						"tags": [
+							"IDE"
 						]
 					}
 				},
@@ -51,7 +60,7 @@
 						"uuid": "vnad-ewkc-xmkl-ewkm-adnx"
 					},
 					"nqps-ewkc-xmkl-ewkm-adnx": {
-						"parent_uuid": "kjlk-adas-bjkj-jkhk-sajs",
+						"parent_uuid": "adfs-dsfa-sdfa-sfds-fadd",
 						"child_uuid": "wqev-mewd-axmw-qwdx-asxd",
 						"type": "arrow_right.png",
 						"uuid": "nqps-ewkc-xmkl-ewkm-adnx"
@@ -61,31 +70,39 @@
 						"child_uuid": "qweu-mewd-axmw-qwdx-asxd",
 						"type": "arrow_right_left.png",
 						"uuid": "qznx-ewkc-xmkl-ewkm-adnx"
+					},
+					"nxwx-ewkc-xmkl-ewkm-adnx": {
+						"parent_uuid": "kjlk-adas-bjkj-jkhk-sajs",
+						"child_uuid": "zqiu-mewd-axmw-qwdx-asxd",
+						"type": "arrow_right.png",
+						"uuid": "nxwx-ewkc-xmkl-ewkm-adnx"
 					}
+
 				},
 				"tags": [
-					"Bash",
-					"Shell",
-					"Starter"
+					"Tutorial",
+					"Language",
+					"Library",
+					"IDE"
 				]
 			}
 		},
 		"comments": {
 			"358fc73b-28d7-4f87-b589-bb986e52f42e": {
 				"text": "Helpful bookmark for starters!",
-				"url": "https://docker-curriculum.com/#hello-world",
+				"url": "https://www.codecademy.com/catalog/language/html-css",
 				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
 				"uuid": "358fc73b-28d7-4f87-b589-bb986e52f42e"
 			},
 			"d7650148-2443-4f14-a6f0-f027a10baa00": {
 				"text": "This bookmark is really helpful!",
-				"url": "https://docker-curriculum.com/#setting-up-your-computer",
+				"url": "https://www.w3schools.com/react/",
 				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
 				"uuid": "d7650148-2443-4f14-a6f0-f027a10baa00"
 			},
 			"e7c603e9-d919-4639-acdf-26504e9f27ae": {
 				"text": "This is the best bookmark!",
-				"url": "https://docker-curriculum.com/#hello-world",
+				"url": "https://www.w3schools.com/react/",
 				"user_uuid": "dc4b3b02-a31a-11ea-bb37-0242ac130002",
 				"uuid": "e7c603e9-d919-4639-acdf-26504e9f27ae"
 			}
