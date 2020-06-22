@@ -44,6 +44,7 @@ export default function BookmarkPopup(props) {
       left: '0px',
       width: `${props.width}px`,
       height: `${props.height}px`,
+      cursor: "pointer",
   }
 
   const handleOpen = () => {
