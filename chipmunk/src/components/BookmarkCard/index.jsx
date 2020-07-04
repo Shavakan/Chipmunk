@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: width,
     height: height,
+    cursor: "pointer",
   },
   tagContainer: {
     flex: 1,
