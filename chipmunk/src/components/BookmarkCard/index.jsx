@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import styled from "styled-components";
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -55,6 +56,13 @@ const BookmarkCard = function BookmarkCard({bookmark }) {
     setComments(commentsData);
   };
 
+  const StyledCardHeader = styled(({ ...other }) => <CardHeader {...other} />)`
+  & .MuiCardHeader-content {
+    flex: 1 1 auto;
+    width: 80%;
+  }
+`;
+
   React.useEffect(() => {
     if (bookmark) {
       getCommentData();
@@ -63,13 +71,13 @@ const BookmarkCard = function BookmarkCard({bookmark }) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <StyledCardHeader
         action={
           <div>
             <Box className={classes.rate}>★ {bookmark.rating}</Box>
           </div>
         }
-        titleTypographyProps={{variant:'body2' }}
+        titleTypographyProps={{ variant:'body2', noWrap: true}}
         title={bookmark.title}
       />
       <div className={classes.tagContainer}>	

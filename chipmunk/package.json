@@ -51,6 +51,7 @@
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12",
+    "styled-components": "^5.1.1",
     "url-join": "^4.0.1"
   },
   "devDependencies": {
